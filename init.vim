@@ -1,4 +1,4 @@
-call plug#begin('~/.config/nvim/plugged')
+scriptencoding utf-8
 
 " Sane tabs
 " - Two spaces wide
@@ -40,6 +40,8 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+
+call plug#begin('~/.config/nvim/plugged')
 " Plugins go here.  Example:
 " Plug 'foo/bar'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

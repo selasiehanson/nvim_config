@@ -1,5 +1,4 @@
 call plug#begin('~/.config/nvim/plugged')
-
 " Sane tabs
 " - Two spaces wide
 set tabstop=2
@@ -33,6 +32,9 @@ map <CR> :noh<CR>
 set cursorline
 set cursorcolumn
 
+"remove highlight after search
+nmap <esc><esc> :noh<return>
+
 " Set the title of the iterm tab
 set title
 noremap <C-h> <C-w>h
@@ -42,6 +44,31 @@ noremap <C-l> <C-w>l
 
 " Plugins go here.  Example:
 " Plug 'foo/bar'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+"Configure FZF
+"function! FzfOmniFiles()
+"  let is_git = system('git status')
+"  if v:shell_error
+"    :Files
+"  else
+"    :GitFiles --exclude-standard --other
+"  end
+"endfunction
+
+"function! FzfOmniFiles()
+"  :Files
+"endfunction
+
+"nnoremap <C-p> :call FzfOmniFiles()<CR>
+nmap ; :Buffers<CR>
+nmap <Leader>t :Files<CR>
+nmap <Leader>r :Tags<CR>
+
+""End of customization for fzf
+
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Themes 
@@ -101,14 +128,23 @@ Plug 'tpope/vim-projectionist' " required for some navigation features
 
 Plug 'slashmili/alchemist.vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-commentary'
+Plug 'mileszs/ack.vim'
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 
 " Nerdtree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
   noremap <C-n> :NERDTreeToggle<CR>
   noremap <leader>n :NERDTreeToggle<CR>
-
+  
+  "Show current file in directory
+  "autocmd BufEnter * lcd %:p:h
+  
 " Git marker for nerdtree
 Plug 'Xuyuanp/nerdtree-git-plugin'
   let g:NERDTreeShowIgnoredStatus=0
@@ -128,6 +164,7 @@ Plug 'sbdchd/neoformat'
 Plug 'mattn/emmet-vim'
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-surround'
+Plug 'reasonml-editor/vim-reason'
 
 call plug#end()
 "ctlp configuration"
@@ -168,7 +205,7 @@ let g:syntastic_always_populate_loc_list = 1
 "Javascript Config
 
   let g:syntastic_javascrtipt_checkers = ['prettier']
-  autocmd BufWritePre *.js Neoformat
+"  autocmd BufWritePre *.js Neoformat
 
 "End Javascript config
 

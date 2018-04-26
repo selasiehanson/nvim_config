@@ -29,8 +29,8 @@ set smartcase
 map <CR> :noh<CR>
 
 " highlight cursor position
-set cursorline
-set cursorcolumn
+" set cursorline
+" set cursorcolumn
 
 "remove highlight after search
 nmap <esc><esc> :noh<return>
@@ -74,8 +74,10 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Themes 
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
-" End of themes
+Plug 'flazz/vim-colorschemes'
 
+" End of themes
+"
   let g:deoplete#enable_at_startup = 1
   " use tab for completion
   inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -165,6 +167,8 @@ Plug 'mattn/emmet-vim'
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-surround'
 Plug 'reasonml-editor/vim-reason'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 
 call plug#end()
 "ctlp configuration"
@@ -185,7 +189,18 @@ endif
 " must be called after plug#end
 set background=dark
 syntax enable
-colorscheme molokai
+" colorscheme molokai
+
+" gui settings
+if (&t_Co == 256 || has('gui_running'))
+  if ($TERM_PROGRAM == 'iTerm.app')
+    colorscheme elflord
+  else
+    colorscheme fu
+  endif
+endif
+
+
 let g:gruvbox_contrast_dark='hard'
 
 "Syntastic configuration

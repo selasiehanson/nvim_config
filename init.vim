@@ -1,6 +1,4 @@
 call plug#begin('~/.config/nvim/plugged')
-scriptencoding utf-8
-
 " Sane tabs
 " - Two spaces wide
 set tabstop=2
@@ -45,8 +43,6 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-
-call plug#begin('~/.config/nvim/plugged')
 " Plugins go here.  Example:
 " Plug 'foo/bar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -80,7 +76,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " Themes
-Plug 'KeitaNakamura/neodark.vim'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'flazz/vim-colorschemes'
@@ -89,19 +84,6 @@ Plug 'rakr/vim-one'
 " End of themes
 "
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#sources = {}
-  let g:deoplete#sources._ = ['file', 'neosnippet']
-  let g:deoplete#omni#functions = {}
-  let g:deoplete#omni#input_patterns = {}
-
-  " Elm support
-  " h/t https://github.com/ElmCast/elm-vim/issues/52#issuecomment-264161975
-  let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
-  let g:deoplete#omni#functions.elm = ['elm#Complete']
-  let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
-  let g:deoplete#disable_auto_complete = 1
-
-
   " use tab for completion
   inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
@@ -111,54 +93,43 @@ Plug 'sheerun/vim-polyglot'
 
 
 " Execute code checks, find mistakes, in the background
-"Plug 'neomake/neomake'
-""  " Run Neomake when I save any buffer
-"  augroup localneomake
-"    autocmd! BufWritePost * Neomake
-"  augroup END
-"  " Don't tell me to use smartquotes in markdown ok?
-"  let g:neomake_markdown_enabled_makers = []
-"
+Plug 'neomake/neomake'
+  " Run Neomake when I save any buffer
+  augroup localneomake
+    autocmd! BufWritePost * Neomake
+  augroup END
+  " Don't tell me to use smartquotes in markdown ok?
+  let g:neomake_markdown_enabled_makers = []
+
   " Configure a nice credo setup, courtesy https://github.com/neomake/neomake/pull/300
-"  let g:neomake_elixir_enabled_makers = ['mycredo']
-"  function! NeomakeCredoErrorType(entry)
-"    if a:entry.type ==# 'F'      " Refactoring opportunities
-"      let l:type = 'W'
-"    elseif a:entry.type ==# 'D'  " Software design suggestions
-"      let l:type = 'I'
-"    elseif a:entry.type ==# 'W'  " Warnings
-"      let l:type = 'W'
-"    elseif a:entry.type ==# 'R'  " Readability suggestions
-"      let l:type = 'I'
-"    elseif a:entry.type ==# 'C'  " Convention violation
-"      let l:type = 'W'
-"    else
-"      let l:type = 'M'           " Everything else is a message
-"    endif
-"    let a:entry.type = l:type
-"  endfunction
-"
-"  let g:neomake_elixir_mycredo_maker = {
-"        \ 'exe': 'mix',
-"        \ 'args': ['credo', 'list', '%:p', '--format=oneline'],
-"        \ 'errorformat': '[%t] %. %f:%l:%c %m,[%t] %. %f:%l %m',
-"        \ 'postprocess': function('NeomakeCredoErrorType')
-"        \ }
-"
+  let g:neomake_elixir_enabled_makers = ['mycredo']
+  function! NeomakeCredoErrorType(entry)
+    if a:entry.type ==# 'F'      " Refactoring opportunities
+      let l:type = 'W'
+    elseif a:entry.type ==# 'D'  " Software design suggestions
+      let l:type = 'I'
+    elseif a:entry.type ==# 'W'  " Warnings
+      let l:type = 'W'
+    elseif a:entry.type ==# 'R'  " Readability suggestions
+      let l:type = 'I'
+    elseif a:entry.type ==# 'C'  " Convention violation
+      let l:type = 'W'
+    else
+      let l:type = 'M'           " Everything else is a message
+    endif
+    let a:entry.type = l:type
+  endfunction
+
+  let g:neomake_elixir_mycredo_maker = {
+        \ 'exe': 'mix',
+        \ 'args': ['credo', 'list', '%:p', '--format=oneline'],
+        \ 'errorformat': '[%t] %. %f:%l:%c %m,[%t] %. %f:%l %m',
+        \ 'postprocess': function('NeomakeCredoErrorType')
+        \ }
+
 Plug 'ludovicchabant/vim-gutentags'
   let g:gutentags_cache_dir = '~/.tags_cache'
 
-Plug 'othree/html5.vim'
-Plug 'html-improved-indentation'
-Plug 'pangloss/vim-javascript'
-Plug 'flowtype/vim-flow'
-Plug 'wokalski/autocomplete-flow'
-
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-
-Plug 'elixir-lang/vim-elixir'
-Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-projectionist' " required for some navigation features
 
@@ -215,9 +186,6 @@ Plug 'racer-rust/vim-racer'
 Plug 'zchee/deoplete-clang'
 Plug 'ntpeters/vim-better-whitespace'
 
-" Fuse
-Plug 'BeeWarloc/vim-fuse'
-Plug 'bogado/file-line'
 call plug#end()
 "ctlp configuration"
 "" The Silver Searcher
@@ -249,7 +217,6 @@ if (&t_Co == 256 || has('gui_running'))
   endif
 endif
 
-colorscheme neodark
 let g:gruvbox_contrast_dark='hard'
 
 "Syntastic configuration
@@ -258,16 +225,12 @@ let g:syntastic_always_populate_loc_list = 1
 
 "Elm configuration
   let g:polyglot_disabled = ['elm']
-  "let g:elm_detailed_complete = 1
-  "let g:elm_format_autosave = 1
-  "let g:elm_syntastic_show_warnings = 1
-  let g:elm_format_autosave = 1
   let g:elm_detailed_complete = 1
+  let g:elm_format_autosave = 1
   let g:elm_syntastic_show_warnings = 1
-  let g:elm_make_show_warnings = 1
-  let g:elm_setup_keybindings = 1
 
   :au BufWritePost *.elm ElmMake
+
 "End Elm configuration
 
 "Javascript Config

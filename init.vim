@@ -1,4 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
+scriptencoding utf-8
 
 " Sane tabs
 " - Two spaces wide
@@ -15,6 +16,7 @@ let g:mapleader=','
 let g:maplocalleader='\\'
 
 set number " line numbering
+" set relativenumber
 
 set encoding=utf-8
 
@@ -30,8 +32,11 @@ set smartcase
 map <CR> :noh<CR>
 
 " highlight cursor position
-set cursorline
-set cursorcolumn
+" set cursorline
+" set cursorcolumn
+
+"remove highlight after search
+nmap <esc><esc> :noh<return>
 
 " Set the title of the iterm tab
 set title
@@ -40,16 +45,49 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+
+call plug#begin('~/.config/nvim/plugged')
 " Plugins go here.  Example:
 " Plug 'foo/bar'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'vim-ruby/vim-ruby'
+
+"Configure FZF
+"function! FzfOmniFiles()
+"  let is_git = system('git status')
+"  if v:shell_error
+"    :Files
+"  else
+"    :GitFiles --exclude-standard --other
+"  end
+"endfunction
+
+"function! FzfOmniFiles()
+"  :Files
+"endfunction
+
+"nnoremap <C-p> :call FzfOmniFiles()<CR>
+nmap ; :Buffers<CR>
+nmap <Leader>t :Files<CR>
+nmap <Leader>r :Tags<CR>
+
+""End of customization for fzf
+
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " Themes
 Plug 'KeitaNakamura/neodark.vim'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
-" End of themes
+Plug 'flazz/vim-colorschemes'
+Plug 'rakr/vim-one'
 
+" End of themes
+"
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#sources = {}
   let g:deoplete#sources._ = ['file', 'neosnippet']
@@ -126,13 +164,30 @@ Plug 'tpope/vim-projectionist' " required for some navigation features
 
 Plug 'slashmili/alchemist.vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-commentary'
+Plug 'mileszs/ack.vim'
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 
 " Nerdtree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-  let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
-  noremap <C-n> :NERDTreeToggle<CR>
-  noremap <leader>n :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
+noremap <C-n> :NERDTreeToggle<CR>
+noremap <leader>n :NERDTreeToggle<CR>
+
+"Show current file in directory
+" nmap <silent> <C-I> :call NERDTreeToggleInCurDir()<cr>
+function! NERDTreeToggleInCurDir()
+  " If NERDTree is open in the current buffer
+  if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+    exe ":NERDTreeClose"
+  else
+    exe ":NERDTreeFind"
+  endif
+endfunction
 
 " Git marker for nerdtree
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -142,6 +197,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#displayed_head_limit = 17
+let g:airline_theme='one'
 set laststatus=2
 
 
@@ -153,6 +209,11 @@ Plug 'sbdchd/neoformat'
 Plug 'mattn/emmet-vim'
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-surround'
+Plug 'reasonml-editor/vim-reason'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+Plug 'zchee/deoplete-clang'
+Plug 'ntpeters/vim-better-whitespace'
 
 " Fuse
 Plug 'BeeWarloc/vim-fuse'
@@ -176,6 +237,18 @@ endif
 " must be called after plug#end
 set background=dark
 syntax enable
+
+" gui settings
+if (&t_Co == 256 || has('gui_running'))
+  if ($TERM_PROGRAM == 'iTerm.app')
+    " colorscheme elflord
+    colorscheme one
+  else
+    " colorscheme fu
+    colorscheme one
+  endif
+endif
+
 colorscheme neodark
 let g:gruvbox_contrast_dark='hard'
 
@@ -191,152 +264,35 @@ let g:syntastic_always_populate_loc_list = 1
   let g:elm_format_autosave = 1
   let g:elm_detailed_complete = 1
   let g:elm_syntastic_show_warnings = 1
-  let g:elm_format_fail_silently = 1
-  let g:elm_browser_command = 'open'
   let g:elm_make_show_warnings = 1
   let g:elm_setup_keybindings = 1
 
   :au BufWritePost *.elm ElmMake
-
 "End Elm configuration
 
 "Javascript Config
 
   let g:syntastic_javascrtipt_checkers = ['prettier']
-  "autocmd BufWritePre *.js Neoformat
+"  autocmd BufWritePre *.js Neoformat
 
 "End Javascript config
 
 "Ruby configuration"
-  let g:syntastic_ruby_checkers = ['rubocop', 'reek']
+ " let g:syntastic_ruby_checkers = ['rubocop', 'reek']
+ " let g:syntastic_ruby_checkers = ['rubocop']
 "End ruby configuration"
-"
 
-" Makes foo-bar considered one word
-set iskeyword+=-
 
-""" Auto Commands ====================== #auto-cmd
+"Golang configuration
+set number
+let g:go_disable_autoinstall = 0
 
-" A helper function to restore cursor position, window position, and last search
-" after running a command.  From:
-" http://stackoverflow.com/questions/15992163/how-to-tell-vim-to-auto-indent-before-saving
-function! Preserve(command)
-  " Save the last search.
-  let search = @/
+" Highlight
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
-  " Save the current cursor position.
-  let cursor_position = getpos('.')
-
-  " Save the current window position.
-  normal! H
-  let window_position = getpos('.')
-  call setpos('.', cursor_position)
-
-  " Execute the command.
-  execute a:command
-
-  " Restore the last search.
-  let @/ = search
-
-  " Restore the previous window position.
-  call setpos('.', window_position)
-  normal! zt
-
-  " Restore the previous cursor position.
-  call setpos('.', cursor_position)
-endfunction
-
-" Re-indent the whole buffer.
-function! Indent()
-  call Preserve('normal gg=G')
-endfunction
-
-""""" Filetypes ========================
-augroup erlang
-  autocmd!
-  autocmd BufNewFile,BufRead *.erl setlocal tabstop=4
-  autocmd BufNewFile,BufRead *.erl setlocal shiftwidth=4
-  autocmd BufNewFile,BufRead *.erl setlocal softtabstop=4
-  autocmd BufNewFile,BufRead relx.config setlocal filetype=erlang
-augroup END
-
-" augroup elixir
-"   autocmd!
-"   " autocmd BufWritePre *.ex call Indent()
-"   " autocmd BufWritePre *.exs call Indent()
-"   "
-"   " Sadly, I can't enable auto-indent for elixir because it messes up my heredoc
-"   " indentation for code sections and it has a couple of other issues :(
-"   autocmd BufNewFile,BufRead *.ex setlocal formatoptions=tcrq
-"   autocmd BufNewFile,BufRead *.exs setlocal formatoptions=tcrq
-" augroup END
-
-augroup elm
-  autocmd!
-  autocmd BufNewFile,BufRead *.elm setlocal tabstop=4
-  autocmd BufNewFile,BufRead *.elm setlocal shiftwidth=4
-  autocmd BufNewFile,BufRead *.elm setlocal softtabstop=4
-augroup END
-
-augroup dotenv
-  autocmd!
-  autocmd BufNewFile,BufRead *.envrc setlocal filetype=sh
-augroup END
-
-augroup es6
-  autocmd!
-  autocmd BufNewFile,BufRead *.es6 setlocal filetype=javascript
-  autocmd BufNewFile,BufRead *.es6.erb setlocal filetype=javascript
-augroup END
-
-augroup markdown
-  autocmd!
-  autocmd FileType markdown setlocal textwidth=80
-  autocmd FileType markdown setlocal formatoptions=tcrq
-  autocmd FileType markdown setlocal spell spelllang=en
-augroup END
-
-augroup viml
-  autocmd!
-  autocmd FileType vim setlocal textwidth=80
-  autocmd FileType vim setlocal formatoptions=tcrq
-augroup END
-
-augroup js
-  autocmd BufWritePre *.js Neoformat
-augroup END
-
-""""" End Filetypes ====================
-
-""""" Normalization ====================
-" Delete trailing white space on save
-func! DeleteTrailingWS()
-  exe 'normal mz'
-  %s/\s\+$//ge
-  exe 'normal `z'
-endfunc
-
-augroup whitespace
-  autocmd BufWrite * silent call DeleteTrailingWS()
-augroup END
-""""" End Normalization ================
-""" End Auto Commands ==================
-
-""" Navigation ====================== #navigation
-" Navigate terminal with C-h,j,k,l
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
-
-" Navigate splits with C-h,j,k,l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <silent> <BS> <C-w>h
-  " Have to add this because hyperterm sends backspace for C-h
-
-" Navigate tabs with leader+h,l
-nnoremap <leader>h :tabprev<cr>
-nnoremap <leader>l :tabnext<cr>
+" Strip whitespace on save
+let g:strip_whitespace_on_save = 1

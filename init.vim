@@ -14,6 +14,7 @@ let g:mapleader=','
 let g:maplocalleader='\\'
 
 set number " line numbering
+" set relativenumber
 
 set encoding=utf-8
 
@@ -46,6 +47,8 @@ noremap <C-l> <C-w>l
 " Plug 'foo/bar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'vim-ruby/vim-ruby'
 
 "Configure FZF
 "function! FzfOmniFiles()
@@ -70,11 +73,13 @@ nmap <Leader>r :Tags<CR>
 
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 
-" Themes 
+" Themes
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'flazz/vim-colorschemes'
+Plug 'rakr/vim-one'
 
 " End of themes
 "
@@ -140,13 +145,21 @@ endif
 
 " Nerdtree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-  let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
-  noremap <C-n> :NERDTreeToggle<CR>
-  noremap <leader>n :NERDTreeToggle<CR>
-  
-  "Show current file in directory
-  "autocmd BufEnter * lcd %:p:h
-  
+let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
+noremap <C-n> :NERDTreeToggle<CR>
+noremap <leader>n :NERDTreeToggle<CR>
+
+"Show current file in directory
+" nmap <silent> <C-I> :call NERDTreeToggleInCurDir()<cr>
+function! NERDTreeToggleInCurDir()
+  " If NERDTree is open in the current buffer
+  if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+    exe ":NERDTreeClose"
+  else
+    exe ":NERDTreeFind"
+  endif
+endfunction
+
 " Git marker for nerdtree
 Plug 'Xuyuanp/nerdtree-git-plugin'
   let g:NERDTreeShowIgnoredStatus=0
@@ -155,6 +168,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#displayed_head_limit = 17
+let g:airline_theme='one'
 set laststatus=2
 
 
@@ -169,6 +183,8 @@ Plug 'tpope/vim-surround'
 Plug 'reasonml-editor/vim-reason'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
+Plug 'zchee/deoplete-clang'
+Plug 'ntpeters/vim-better-whitespace'
 
 call plug#end()
 "ctlp configuration"
@@ -189,17 +205,17 @@ endif
 " must be called after plug#end
 set background=dark
 syntax enable
-" colorscheme molokai
 
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
   if ($TERM_PROGRAM == 'iTerm.app')
-    colorscheme elflord
+    " colorscheme elflord
+    colorscheme one
   else
-    colorscheme fu
+    " colorscheme fu
+    colorscheme one
   endif
 endif
-
 
 let g:gruvbox_contrast_dark='hard'
 
@@ -212,7 +228,7 @@ let g:syntastic_always_populate_loc_list = 1
   let g:elm_detailed_complete = 1
   let g:elm_format_autosave = 1
   let g:elm_syntastic_show_warnings = 1
-  
+
   :au BufWritePost *.elm ElmMake
 
 "End Elm configuration
@@ -225,5 +241,21 @@ let g:syntastic_always_populate_loc_list = 1
 "End Javascript config
 
 "Ruby configuration"
-  let g:syntastic_ruby_checkers = ['rubocop', 'reek']
+ " let g:syntastic_ruby_checkers = ['rubocop', 'reek']
+ " let g:syntastic_ruby_checkers = ['rubocop']
 "End ruby configuration"
+
+
+"Golang configuration
+set number
+let g:go_disable_autoinstall = 0
+
+" Highlight
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+" Strip whitespace on save 
+let g:strip_whitespace_on_save = 1

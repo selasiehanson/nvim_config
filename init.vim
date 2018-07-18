@@ -204,13 +204,23 @@ syntax enable
 if (&t_Co == 256 || has('gui_running'))
   if ($TERM_PROGRAM == 'iTerm.app')
     " colorscheme elflord
-    color space-vim-dark
+    " color space-vim-dark
+    colorscheme spacegray
   else
     " colorscheme fu
-    color space-vim-dark
+    colorscheme spacegray
+    " color space-vim-dark
   endif
 endif
+
+" --- THEME CUSTOMIZATION---
+" call one#highlight('vimLineComment', 'cccccc', '', 'none')
 let g:space_vim_dark_background = 234
+let g:spacegray_underline_search = 1
+let g:spacegray_use_italics = 1
+let g:spacegray_low_contrast = 1
+
+" --- END THEME CUSTOMIZATION---
 
 "Syntastic configuration
 let g:syntastic_always_populate_loc_list = 1

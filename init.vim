@@ -63,6 +63,9 @@ Plug 'liuchengxu/space-vim-dark'
 " End of themes
 
 " Polyglot loads language support on demand!
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'neomake/neomake'
 Plug 'ludovicchabant/vim-gutentags'
@@ -84,10 +87,11 @@ Plug 'tpope/vim-surround'
 Plug 'reasonml-editor/vim-reason'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
-Plug 'zchee/deoplete-clang'
+" Plug 'zchee/deoplete-clang'
 Plug 'ntpeters/vim-better-whitespace'
+" Plug 'zah/nim.vim'
+" Plug 'baabelfish/nvim-nim'
 " Plug 'parsonsmatt/intero-neovim'
-"
 " --- END OF PLUGINS
 
 if executable('ag')
@@ -204,21 +208,23 @@ syntax enable
 if (&t_Co == 256 || has('gui_running'))
   if ($TERM_PROGRAM == 'iTerm.app')
     " colorscheme elflord
-    " color space-vim-dark
-    colorscheme spacegray
+    color space-vim-dark
+    " colorscheme spacegray
   else
     " colorscheme fu
-    colorscheme spacegray
-    " color space-vim-dark
+    " colorscheme spacegray
+    color space-vim-dark
   endif
 endif
 
 " --- THEME CUSTOMIZATION---
 " call one#highlight('vimLineComment', 'cccccc', '', 'none')
+" let g:space_vim_dark_background = 234
+" let g:spacegray_underline_search = 1
+" let g:spacegray_use_italics = 1
+" let g:spacegray_low_contrast = 1
+
 let g:space_vim_dark_background = 234
-let g:spacegray_underline_search = 1
-let g:spacegray_use_italics = 1
-let g:spacegray_low_contrast = 1
 
 " --- END THEME CUSTOMIZATION---
 

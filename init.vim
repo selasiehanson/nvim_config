@@ -42,6 +42,7 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+:tnoremap <Esc> <C-\><C-n> "allow ability to hit esc when in teminal mode
 
 " --- PLUGINS ---------
 " Plugins go here.  Example:
@@ -85,6 +86,7 @@ Plug 'mattn/emmet-vim'
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-surround'
 Plug 'reasonml-editor/vim-reason'
+Plug 'tpope/vim-rails'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 " Plug 'zchee/deoplete-clang'

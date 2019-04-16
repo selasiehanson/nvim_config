@@ -1,4 +1,11 @@
+let g:python2_host_prog = '/usr/local/Cellar/python@2/2.7.16/bin/python2'
+let g:python3_host_prog = '/usr/local/Cellar/python/3.7.1/bin/python3'
+
 call plug#begin('~/.config/nvim/plugged')
+
+syntax on
+filetype on
+filetype plugin indent on
 " Sane tabs
 " - Two spaces wide
 set tabstop=2
@@ -51,6 +58,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-ruby/vim-ruby'
 
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 
@@ -85,10 +98,12 @@ Plug 'sbdchd/neoformat'
 Plug 'mattn/emmet-vim'
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-surround'
-Plug 'reasonml-editor/vim-reason'
+Plug 'reasonml-editor/vim-reason-plus'
 Plug 'tpope/vim-rails'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
+Plug 'purescript-contrib/purescript-vim'
+Plug 'frigoeu/psc-ide-vim'
 " Plug 'zchee/deoplete-clang'
 Plug 'ntpeters/vim-better-whitespace'
 " Plug 'zah/nim.vim'
@@ -270,3 +285,24 @@ let g:go_highlight_build_constraints = 1
 
 " Strip whitespace on save
 let g:strip_whitespace_on_save = 1
+
+"Purescript configuration
+let purescript_indent_if = 3
+let purescript_indent_case = 5
+let purescript_indent_let = 4
+let purescript_indent_where = 6
+let purescript_indent_in = 1
+let purescript_indent_dot = v:true
+
+
+"Reasonml configuration
+let g:LanguageClient_serverCommands = {
+    \ 'reason': ['/Users/selasiehanson/Engine/lang-servers/reason-language-server/reason-language-server.exe']
+    \ }
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
+
+"ocaml configuration
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+     execute "set rtp+=" . g:opamshare . "/merlin/vim"

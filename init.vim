@@ -98,7 +98,7 @@ Plug 'sbdchd/neoformat'
 Plug 'mattn/emmet-vim'
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-surround'
-Plug 'reasonml-editor/vim-reason-plus'
+" Plug 'reasonml-editor/vim-reason-plus'
 Plug 'tpope/vim-rails'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
@@ -273,6 +273,7 @@ let g:syntastic_javascrtipt_checkers = ['prettier']
 
 
 "Golang configuration
+autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
 set number
 let g:go_disable_autoinstall = 0
 
@@ -282,6 +283,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_auto_type_info = 1
 
 " Strip whitespace on save
 let g:strip_whitespace_on_save = 1
@@ -295,14 +297,29 @@ let purescript_indent_in = 1
 let purescript_indent_dot = v:true
 
 
+Plug 'rgrinberg/vim-ocaml'
+Plug 'jordwalke/vim-reasonml'
+
+
 "Reasonml configuration
 let g:LanguageClient_serverCommands = {
-    \ 'reason': ['/Users/selasiehanson/Engine/lang-servers/reason-language-server/reason-language-server.exe']
+    \ 'reason': ['/Users/selasiehanson/Engine/lang-servers/reason-language-server/reason-language-server.exe'],
+    \ 'ocaml': ['/Users/selasiehanson/Engine/lang-servers/reason-language-server/reason-language-server.exe']
     \ }
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
-nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
-nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
+"nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+"nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+"nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
 
-"ocaml configuration
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-     execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+""ocaml configuration
+"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+"     execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+"" let g:neoformat_ocaml_ocamlformat = {
+""             \ 'exe': 'ocamlformat',
+""             \ 'no_append': 1,
+""             \ 'stdin': 1,
+""             \ 'args': ['--disable-outside-detected-project', '--name', '"%:p"', '-']
+""             \ }
+
+"" let g:neoformat_enabled_ocaml = ['ocamlformat']

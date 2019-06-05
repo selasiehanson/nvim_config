@@ -59,9 +59,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-ruby/vim-ruby'
 
 Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
 
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -118,7 +118,6 @@ endif
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
 noremap <C-n> :NERDTreeToggle<CR>
 noremap <leader>n :NERDTreeToggle<CR>
-
 
 
 let g:gutentags_cache_dir = '~/.tags_cache'
@@ -297,15 +296,30 @@ let purescript_indent_in = 1
 let purescript_indent_dot = v:true
 
 
-Plug 'rgrinberg/vim-ocaml'
-Plug 'jordwalke/vim-reasonml'
+Plug 'rgrinberg/vim-ocaml', {
+      \ 'on_ft': ['ocaml', 'opam', 'dune'],
+      \ }
 
+Plug 'jordwalke/vim-reasonml',  {
+      \ 'on_ft': ['reason', 'ocaml'],
+      \ }
+
+Plug 'copy/deoplete-ocaml'
+
+function! SourceDirectory(file)
+  for s:fpath in split(globpath(a:file, '*.vim'), '\n')
+    exe 'source' s:fpath
+  endfor
+endfunction
+
+" call SourceDirectory('~/.config/nvim/configurations/')
+exe 'source' '~/.config/nvim/configurations/reason-ocaml.vim'
 
 "Reasonml configuration
-let g:LanguageClient_serverCommands = {
-    \ 'reason': ['/Users/selasiehanson/Engine/lang-servers/reason-language-server/reason-language-server.exe'],
-    \ 'ocaml': ['/Users/selasiehanson/Engine/lang-servers/reason-language-server/reason-language-server.exe']
-    \ }
+" let g:LanguageClient_serverCommands = {
+" \ 'reason': ['/Users/selasiehanson/Engine/lang-servers/reason-language-server/reason-language-server.exe'],
+" \ 'ocaml': ['/Users/selasiehanson/Engine/lang-servers/reason-language-server/reason-language-server.exe']
+" \ }
 "nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
 "nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
 "nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>

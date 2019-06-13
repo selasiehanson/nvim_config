@@ -106,6 +106,8 @@ Plug 'purescript-contrib/purescript-vim'
 Plug 'frigoeu/psc-ide-vim'
 " Plug 'zchee/deoplete-clang'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'alaviss/nim.nvim'
+Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
 " Plug 'zah/nim.vim'
 " Plug 'baabelfish/nvim-nim'
 " Plug 'parsonsmatt/intero-neovim'
@@ -314,26 +316,5 @@ endfunction
 
 " call SourceDirectory('~/.config/nvim/configurations/')
 exe 'source' '~/.config/nvim/configurations/reason-ocaml.vim'
+exe 'source' '~/.config/nvim/configurations/nim.vim'
 
-"Reasonml configuration
-" let g:LanguageClient_serverCommands = {
-" \ 'reason': ['/Users/selasiehanson/Engine/lang-servers/reason-language-server/reason-language-server.exe'],
-" \ 'ocaml': ['/Users/selasiehanson/Engine/lang-servers/reason-language-server/reason-language-server.exe']
-" \ }
-"nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
-"nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
-"nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
-
-
-""ocaml configuration
-"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-"     execute "set rtp+=" . g:opamshare . "/merlin/vim"
-
-"" let g:neoformat_ocaml_ocamlformat = {
-""             \ 'exe': 'ocamlformat',
-""             \ 'no_append': 1,
-""             \ 'stdin': 1,
-""             \ 'args': ['--disable-outside-detected-project', '--name', '"%:p"', '-']
-""             \ }
-
-"" let g:neoformat_enabled_ocaml = ['ocamlformat']

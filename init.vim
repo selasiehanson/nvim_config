@@ -63,10 +63,6 @@ Plug 'autozimu/LanguageClient-neovim', {
       \ 'do': 'bash install.sh',
       \ }
 
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-
 " Themes
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
@@ -82,8 +78,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'neomake/neomake'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-projectionist' " required for some navigation features
 Plug 'slashmili/alchemist.vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
@@ -93,24 +87,18 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'bling/vim-airline'
 Plug 'airblade/vim-gitgutter'
-Plug 'elmcast/elm-vim'
+" Plug 'elmcast/elm-vim'
 Plug 'sbdchd/neoformat'
 Plug 'mattn/emmet-vim'
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-surround'
-" Plug 'reasonml-editor/vim-reason-plus'
 Plug 'tpope/vim-rails'
-Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'frigoeu/psc-ide-vim'
-" Plug 'zchee/deoplete-clang'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'alaviss/nim.nvim'
 Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
-" Plug 'zah/nim.vim'
-" Plug 'baabelfish/nvim-nim'
-" Plug 'parsonsmatt/intero-neovim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "Great completion library
 " --- END OF PLUGINS
 
 if executable('ag')
@@ -122,7 +110,7 @@ noremap <C-n> :NERDTreeToggle<CR>
 noremap <leader>n :NERDTreeToggle<CR>
 
 
-let g:gutentags_cache_dir = '~/.tags_cache'
+" let g:gutentags_cache_dir = '~/.tags_cache'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#displayed_head_limit = 17
 set laststatus=2
@@ -141,7 +129,6 @@ function! NERDTreeToggleInCurDir()
 endfunction
 
 
-let g:deoplete#enable_at_startup = 1
 " use tab for completion
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
@@ -163,7 +150,7 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 "nnoremap <C-p> :call FzfOmniFiles()<CR>
 nmap ; :Buffers<CR>
 nmap <Leader>t :Files<CR>
-nmap <Leader>r :Tags<CR>
+" nmap <Leader>r :Tags<CR>
 
 ""End of customization for fzf
 
@@ -173,32 +160,6 @@ augroup localneomake
 augroup END
 " Don't tell me to use smartquotes in markdown ok?
 let g:neomake_markdown_enabled_makers = []
-
-" Configure a nice credo setup, courtesy https://github.com/neomake/neomake/pull/300
-let g:neomake_elixir_enabled_makers = ['mycredo']
-function! NeomakeCredoErrorType(entry)
-  if a:entry.type ==# 'F'      " Refactoring opportunities
-    let l:type = 'W'
-  elseif a:entry.type ==# 'D'  " Software design suggestions
-    let l:type = 'I'
-  elseif a:entry.type ==# 'W'  " Warnings
-    let l:type = 'W'
-  elseif a:entry.type ==# 'R'  " Readability suggestions
-    let l:type = 'I'
-  elseif a:entry.type ==# 'C'  " Convention violation
-    let l:type = 'W'
-  else
-    let l:type = 'M'           " Everything else is a message
-  endif
-  let a:entry.type = l:type
-endfunction
-
-let g:neomake_elixir_mycredo_maker = {
-      \ 'exe': 'mix',
-      \ 'args': ['credo', 'list', '%:p', '--format=oneline'],
-      \ 'errorformat': '[%t] %. %f:%l:%c %m,[%t] %. %f:%l %m',
-      \ 'postprocess': function('NeomakeCredoErrorType')
-      \ }
 
 
 
@@ -251,12 +212,12 @@ let g:syntastic_always_populate_loc_list = 1
 "End Syntastic configuration
 
 "Elm configuration
-let g:polyglot_disabled = ['elm']
-let g:elm_detailed_complete = 1
-let g:elm_format_autosave = 1
-let g:elm_syntastic_show_warnings = 1
+" let g:polyglot_disabled = ['elm']
+" let g:elm_detailed_complete = 1
+" let g:elm_format_autosave = 1
+" let g:elm_syntastic_show_warnings = 1
 
-:au BufWritePost *.elm ElmMake
+" :au BufWritePost *.elm ElmMake
 
 "End Elm configuration
 
@@ -274,39 +235,29 @@ let g:syntastic_javascrtipt_checkers = ['prettier']
 
 
 "Golang configuration
-autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
-set number
-let g:go_disable_autoinstall = 0
+" autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
+" set number
+" let g:go_disable_autoinstall = 0
 
 " Highlight
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_auto_type_info = 1
+"let g:go_highlight_functions = 1
+"let g:go_highlight_methods = 1
+"let g:go_highlight_structs = 1
+"let g:go_highlight_operators = 1
+"let g:go_highlight_build_constraints = 1
+"let g:go_auto_type_info = 1
 
-" Strip whitespace on save
-let g:strip_whitespace_on_save = 1
+"" Strip whitespace on save
+"let g:strip_whitespace_on_save = 1
 
-"Purescript configuration
-let purescript_indent_if = 3
-let purescript_indent_case = 5
-let purescript_indent_let = 4
-let purescript_indent_where = 6
-let purescript_indent_in = 1
-let purescript_indent_dot = v:true
+""Purescript configuration
+"let purescript_indent_if = 3
+"let purescript_indent_case = 5
+"let purescript_indent_let = 4
+"let purescript_indent_where = 6
+"let purescript_indent_in = 1
+"let purescript_indent_dot = v:true
 
-
-Plug 'rgrinberg/vim-ocaml', {
-      \ 'on_ft': ['ocaml', 'opam', 'dune'],
-      \ }
-
-Plug 'jordwalke/vim-reasonml',  {
-      \ 'on_ft': ['reason', 'ocaml'],
-      \ }
-
-Plug 'copy/deoplete-ocaml'
 
 function! SourceDirectory(file)
   for s:fpath in split(globpath(a:file, '*.vim'), '\n')
@@ -315,6 +266,16 @@ function! SourceDirectory(file)
 endfunction
 
 " call SourceDirectory('~/.config/nvim/configurations/')
-exe 'source' '~/.config/nvim/configurations/reason-ocaml.vim'
+" exe 'source' '~/.config/nvim/configurations/reason-ocaml.vim'
+
+exe 'source' '~/.config/nvim/configurations/coc.vim'
 exe 'source' '~/.config/nvim/configurations/nim.vim'
 
+let g:neoformat_ocaml_ocamlformat = {
+            \ 'exe': 'ocamlformat',
+            \ 'no_append': 1,
+            \ 'stdin': 1,
+            \ 'args': ['--disable-outside-detected-project', '--name', '"%:p"', '-']
+            \ }
+
+let g:neoformat_enabled_ocaml = ['ocamlformat']

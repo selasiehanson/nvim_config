@@ -1,0 +1,43 @@
+{
+  "coc.preferences.codeLens.enable": true,
+  "coc.preferences.snippetIndicator": "~",
+  "coc.preferences.diagnostic.enable": false,
+  "coc.preferences.diagnostic.errorSign": "E",
+  "coc.preferences.diagnostic.warningSign": "w",
+  "coc.preferences.diagnostic.infoSign": "i",
+  "coc.preferences.diagnostic.hintSign": "*",
+  "languageserver": {
+    "reason": {
+      "command": "/Users/selasiehanson/Engine/lang-servers/reason-language-server/reason-language-server.exe",
+      "filetypes": ["reason", "ocaml"]
+    },
+    "clangd": {
+      "command": "clangd",
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["c", "cpp", "objc", "objcpp"]
+    },
+    "elmLS": {
+      "command": "elm-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"],
+      "initializationOptions": {
+        "runtime": "node",
+        "elmPath": "elm",
+        "elmFormatPath": "elm-format",
+        "elmTestPath": "elm-test"
+      }
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    },
+    "purescript": {
+      "command": "purescript-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["purescript"],
+      "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"]
+    }
+  }
+}

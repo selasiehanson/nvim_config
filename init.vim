@@ -73,6 +73,7 @@ Plug 'liuchengxu/space-vim-dark'
 " End of themes
 
 " Polyglot loads language support on demand!
+Plug 'Tetralux/odin.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
@@ -99,6 +100,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'alaviss/nim.nvim'
 Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Great completion library
+Plug 'ziglang/zig.vim'
 " --- END OF PLUGINS
 
 if executable('ag')
@@ -224,7 +226,7 @@ let g:syntastic_always_populate_loc_list = 1
 "Javascript Config
 
 let g:syntastic_javascrtipt_checkers = ['prettier']
-"  autocmd BufWritePre *.js Neoformat
+ autocmd BufWritePre *.js Neoformat
 
 "End Javascript config
 
@@ -275,7 +277,14 @@ let g:neoformat_ocaml_ocamlformat = {
             \ 'exe': 'ocamlformat',
             \ 'no_append': 1,
             \ 'stdin': 1,
-            \ 'args': ['--disable-outside-detected-project', '--name', '"%:p"', '-']
+            \ 'args': [ '--name', '"%:p"', '-']
             \ }
 
 let g:neoformat_enabled_ocaml = ['ocamlformat']
+
+
+" Auto format these files on save
+" autocmd BufWritePre *.js Neoformat
+" autocmd BufWritePre *.purs Neoformat
+autocmd BufWritePre *.ml Neoformat
+autocmd BufWritePre *.mli Neoformat

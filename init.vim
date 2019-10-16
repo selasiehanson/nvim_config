@@ -70,6 +70,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'rakr/vim-one'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'liuchengxu/space-vim-dark'
+Plug 'joshdick/onedark.vim'
 " End of themes
 
 " Polyglot loads language support on demand!
@@ -101,6 +102,7 @@ Plug 'alaviss/nim.nvim'
 Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Great completion library
 Plug 'ziglang/zig.vim'
+Plug 'alx741/vim-hindent'
 " --- END OF PLUGINS
 
 if executable('ag')
@@ -189,12 +191,14 @@ syntax enable
 if (&t_Co == 256 || has('gui_running'))
   if ($TERM_PROGRAM == 'iTerm.app')
     " colorscheme elflord
-    color space-vim-dark
+    " color space-vim-dark
     " colorscheme spacegray
+    colorscheme onedark
   else
     " colorscheme fu
     " colorscheme spacegray
-    color space-vim-dark
+    " color space-vim-dark
+    colorscheme onedark
   endif
 endif
 
@@ -281,7 +285,7 @@ let g:neoformat_ocaml_ocamlformat = {
             \ }
 
 let g:neoformat_enabled_ocaml = ['ocamlformat']
-
+nmap <LocalLeader>t :MerlinTypeOf<CR>
 
 " Auto format these files on save
 " autocmd BufWritePre *.js Neoformat

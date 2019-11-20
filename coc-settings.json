@@ -1,5 +1,5 @@
 {
-  "coc.preferences.codeLens.enable": true,
+  "coc.preferences.codeLens.enable": false,
   "coc.preferences.snippetIndicator": "~",
   "coc.preferences.diagnostic.enable": false,
   "coc.preferences.diagnostic.errorSign": "E",
@@ -56,7 +56,7 @@
         "languageServerHaskell": {
           "hlintOn": true
         }
-      },
+      }
     }
   }
 }

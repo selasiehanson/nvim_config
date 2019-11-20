@@ -71,6 +71,7 @@ Plug 'rakr/vim-one'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'liuchengxu/space-vim-dark'
 Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 " End of themes
 
 " Polyglot loads language support on demand!
@@ -184,7 +185,7 @@ endif
 "End ctrlp configuration"
 
 " must be called after plug#end
-set background=dark
+set background=light
 syntax enable
 
 " gui settings
@@ -193,12 +194,14 @@ if (&t_Co == 256 || has('gui_running'))
     " colorscheme elflord
     " color space-vim-dark
     " colorscheme spacegray
-    colorscheme onedark
+    " colorscheme onedark
+    colorscheme one
   else
     " colorscheme fu
     " colorscheme spacegray
     " color space-vim-dark
-    colorscheme onedark
+    " colorscheme onedark
+    colorscheme one
   endif
 endif
 
@@ -292,3 +295,6 @@ nmap <LocalLeader>t :MerlinTypeOf<CR>
 " autocmd BufWritePre *.purs Neoformat
 autocmd BufWritePre *.ml Neoformat
 autocmd BufWritePre *.mli Neoformat
+
+
+let no_ocaml_maps=1

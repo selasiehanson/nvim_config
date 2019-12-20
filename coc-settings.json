@@ -9,19 +9,45 @@
   "languageserver": {
     "ocaml": {
       "command": "ocaml-language-server",
-      "args": ["--stdio"],
-      "filetypes": ["reason", "ocaml"]
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "reason",
+        "ocaml"
+      ]
     },
-    "clangd": {
-      "command": "clangd",
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["c", "cpp", "objc", "objcpp"]
+    "cquery": {
+      "command": "cquery",
+      "args": [
+        "--log-file=/tmp/cq.log"
+      ],
+      "filetypes": [
+        "c",
+        "cpp"
+      ],
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cacheDirectory": "/tmp/cquery"
+      }
     },
     "elmLS": {
       "command": "elm-language-server",
-      "args": ["--stdio"],
-      "filetypes": ["elm"],
-      "rootPatterns": ["elm.json"],
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "elm"
+      ],
+      "rootPatterns": [
+        "elm.json"
+      ],
       "initializationOptions": {
         "runtime": "node",
         "elmPath": "elm",
@@ -31,14 +57,29 @@
     },
     "golang": {
       "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
+      "rootPatterns": [
+        "go.mod",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": [
+        "go"
+      ]
     },
     "purescript": {
       "command": "purescript-language-server",
-      "args": ["--stdio"],
-      "filetypes": ["purescript"],
-      "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"]
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "purescript"
+      ],
+      "rootPatterns": [
+        "bower.json",
+        "psc-package.json",
+        "spago.dhall"
+      ]
     },
     "haskell": {
       "command": "hie-wrapper",

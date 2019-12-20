@@ -101,7 +101,9 @@ Plug 'frigoeu/psc-ide-vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'alaviss/nim.nvim'
 Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
-Plug 'neoclide/coc.nvim', {'branch': 'release'} "Great completion library
+" Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}} "Great completion library
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
+
 Plug 'ziglang/zig.vim'
 Plug 'alx741/vim-hindent'
 " --- END OF PLUGINS

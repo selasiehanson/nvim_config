@@ -298,5 +298,8 @@ nmap <LocalLeader>t :MerlinTypeOf<CR>
 autocmd BufWritePre *.ml Neoformat
 autocmd BufWritePre *.mli Neoformat
 
+nnoremap <leader> F :call CocAction('format')<CR>
+
+
 
 let no_ocaml_maps=1

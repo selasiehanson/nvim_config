@@ -95,7 +95,9 @@
       ],
       "initializationOptions": {
         "languageServerHaskell": {
-          "hlintOn": true
+          "hlintOn": true,
+           "maxNumberOfProblems": 10,
+          "completionSnippetsOn": true
         }
       }
     }

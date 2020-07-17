@@ -6,6 +6,7 @@
   "coc.preferences.diagnostic.warningSign": "w",
   "coc.preferences.diagnostic.infoSign": "i",
   "coc.preferences.diagnostic.hintSign": "*",
+  "yank.highlight.duration": 700,
   "languageserver": {
     "ocaml": {
       "command": "ocaml-language-server",

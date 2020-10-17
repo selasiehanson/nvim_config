@@ -63,20 +63,17 @@ Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-ruby/vim-ruby'
 
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ }
-
 " Themes
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
-Plug 'flazz/vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
 Plug 'rakr/vim-one'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'liuchengxu/space-vim-dark'
 Plug 'joshdick/onedark.vim'
 Plug 'rakr/vim-one'
+Plug 'rafalbromirski/vim-aurora'
+" Plug 'ayu-theme/ayu-vim'
 " End of themes
 
 " Polyglot loads language support on demand!
@@ -105,13 +102,23 @@ Plug 'purescript-contrib/purescript-vim'
 Plug 'frigoeu/psc-ide-vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'alaviss/nim.nvim'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh'
+    \ }
 Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}} "Great completion library
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'ziglang/zig.vim'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'alx741/vim-hindent'
+
+"terraform plugins
+Plug 'hashivim/vim-terraform'
+Plug 'vim-syntastic/syntastic'
+Plug 'juliosueiras/vim-terraform-completion'
 " --- END OF PLUGINS
 
 if executable('ag')
@@ -163,6 +170,11 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 "nnoremap <C-p> :call FzfOmniFiles()<CR>
 nmap ; :Buffers<CR>
 nmap <Leader>t :Files<CR>
+
+nmap // :BLines!<CR>
+nmap ?? :Rg!<CR>
+nmap cc :Commands!<CR>
+
 " nmap <Leader>r :Tags<CR>
 
 ""End of customization for fzf
@@ -196,6 +208,10 @@ endif
 set background=dark
 syntax enable
 
+
+" aurora theme needs this
+" set termguicolors
+
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
   if ($TERM_PROGRAM == 'iTerm.app')
@@ -203,15 +219,19 @@ if (&t_Co == 256 || has('gui_running'))
     " color space-vim-dark
     " colorscheme spacegray
     " colorscheme onedark
-    " colorscheme one
-    colorscheme gruvbox
+    colorscheme molokai
+    " colorscheme gruvbox
+    " colorscheme aurora
+    " colorscheme ayu
   else
     " colorscheme fu
     " colorscheme spacegray
     " color space-vim-dark
     " colorscheme onedark
-    " colorscheme one
-    colorscheme gruvbox
+    colorscheme onedark
+    " colorscheme gruvbox
+    " colorscheme aurora
+    " colorscheme ayu
   endif
 endif
 
@@ -420,6 +440,7 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <space>f  :<C-u>CocFix<CR>
 
 " Notify coc.nvim that <enter> has been pressed.
 " Currently used for the formatOnType feature.
@@ -434,3 +455,7 @@ nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsBuild'
 nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsBuild<CR>
+
+
+"" Php Stuff
+autocmd FileType php setlocal ts=4 sts=4 sw=4 expandtab

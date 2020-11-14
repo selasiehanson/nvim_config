@@ -106,7 +106,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh'
     \ }
-Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
+" Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}} "Great completion library
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -173,6 +173,7 @@ nmap <Leader>t :Files<CR>
 
 nmap // :BLines!<CR>
 nmap ?? :Rg!<CR>
+nmap ??? :Rg <C-r>"<CR>
 nmap cc :Commands!<CR>
 
 " nmap <Leader>r :Tags<CR>
@@ -290,12 +291,12 @@ let g:syntastic_javascrtipt_checkers = ['prettier']
 "let g:strip_whitespace_on_save = 1
 
 ""Purescript configuration
-"let purescript_indent_if = 3
-"let purescript_indent_case = 5
-"let purescript_indent_let = 4
-"let purescript_indent_where = 6
-"let purescript_indent_in = 1
-"let purescript_indent_dot = v:true
+let purescript_indent_if = 3
+let purescript_indent_case = 5
+let purescript_indent_let = 4
+let purescript_indent_where = 6
+let purescript_indent_in = 1
+let purescript_indent_dot = v:true
 
 
 function! SourceDirectory(file)
@@ -322,7 +323,7 @@ nmap <LocalLeader>t :MerlinTypeOf<CR>
 
 " Auto format these files on save
 " autocmd BufWritePre *.js Neoformat
-" autocmd BufWritePre *.purs Neoformat
+autocmd BufWritePre *.purs Neoformat
 autocmd BufWritePre *.ml Neoformat
 autocmd BufWritePre *.mli Neoformat
 

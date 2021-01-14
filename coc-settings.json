@@ -95,9 +95,15 @@
       "args": [
         "--stdio"
       ],
+      "trace.server": "off",
       "filetypes": [
         "purescript"
       ],
+      "settings": {
+        "purescript": {
+          "addSpagoSources": true // etc
+        }
+      },
       "rootPatterns": [
         "bower.json",
         "psc-package.json",

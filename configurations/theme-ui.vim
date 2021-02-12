@@ -18,8 +18,8 @@ if (&t_Co == 256 || has('gui_running'))
     " colorscheme spacegray
     " color space-vim-dark
     " colorscheme onedark
-    colorscheme onedark
-    " colorscheme gruvbox
+    " colorscheme onedark
+    colorscheme gruvbox
     " colorscheme aurora
     " colorscheme ayu
   endif

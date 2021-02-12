@@ -9,6 +9,7 @@ Plug 'junegunn/fzf.vim'
 " Themes
 Plug 'tomasr/molokai'
 Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 Plug 'morhetz/gruvbox'
 " End of themes
 
@@ -16,6 +17,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'sheerun/vim-polyglot'
+" Plug 'pangloss/vim-javascript'    " JavaScript support
+" Plug 'leafgarland/typescript-vim' " TypeScript syntax
+" Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+" Plug 'jparise/vim-graphql'        " GraphQL syntax
+" Plug 'styled-components/vim-styled-components'
+
 Plug 'neomake/neomake'
 Plug 'tpope/vim-projectionist' " required for some navigation features
 Plug 'slashmili/alchemist.vim'
@@ -31,15 +38,16 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'alaviss/nim.nvim'
+Plug 'rescript-lang/vim-rescript'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh'
     \ }
 " Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}} "Great completion library
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
 
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'alx741/vim-hindent'
 
 "" UNUSED PLUGINS ------
@@ -55,10 +63,8 @@ Plug 'alx741/vim-hindent'
 " Plug 'Tetralux/odin.vim'
 " ----- COLORS -----
 " Plug 'flazz/vim-colorschemes'
-" Plug 'rakr/vim-one'
 " Plug 'dracula/vim', { 'as': 'dracula' }
 " Plug 'liuchengxu/space-vim-dark'
-" Plug 'rakr/vim-one'
 " Plug 'rafalbromirski/vim-aurora'
 " Plug 'ayu-theme/ayu-vim'
 

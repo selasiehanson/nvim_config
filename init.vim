@@ -38,7 +38,8 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'alaviss/nim.nvim'
-Plug 'rescript-lang/vim-rescript'
+" Plug 'rescript-lang/vim-rescript' "-- Messes with neovim. Consider using it
+" in vim instead
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh'

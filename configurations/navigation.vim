@@ -4,7 +4,7 @@ noremap <leader>n :NERDTreeToggle<CR>
 
 
 "NerdTree
-let g:NERDTreeShowIgnoredStatus=0
+let g:NERDTreeGitStatusShowIgnored=0
 "Show current file in directory
 " nmap <silent> <C-I> :call NERDTreeToggleInCurDir()<cr>
 function! NERDTreeToggleInCurDir()

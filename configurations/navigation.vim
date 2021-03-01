@@ -23,7 +23,8 @@ nmap <Leader>t :Files<CR>
 
 nmap // :BLines!<CR>
 nmap ?? :Rg!<CR>
-nmap ??? :Rg <C-r>"<CR>
+nmap ??? :Rg <c-r>=expand("<cword>")<cr><CR>
+nmap <leader>w :s/\(<c-r>=expand("<cword>")<cr>\)/
 nmap cc :Commands!<CR>
 
 

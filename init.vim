@@ -11,6 +11,7 @@ Plug 'tomasr/molokai'
 Plug 'joshdick/onedark.vim'
 Plug 'rakr/vim-one'
 Plug 'morhetz/gruvbox'
+Plug 'fxn/vim-monochrome'
 " End of themes
 
 Plug 'tpope/vim-fugitive'

@@ -11,6 +11,17 @@ set softtabstop=2
 set expandtab
 " - Indent by 2 spaces by default
 set shiftwidth=2
+" if hidden is not set, TextEdit might fail.
+set hidden
+" Better display for messages
+set cmdheight=2
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" always show signcolumns
+set signcolumn=yes
+
 
 " Use comma for leader
 let g:mapleader=','
@@ -57,3 +68,10 @@ noremap <C-l> <C-w>l
 
 
 set laststatus=2
+
+" TODO Map this
+function! IncreasePane()
+  " If NERDTree is open in the current buffer
+    echo "Welping"
+    execute ":vertical res +5"
+endfunction

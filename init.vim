@@ -39,18 +39,23 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'alaviss/nim.nvim'
+Plug 'teal-language/vim-teal'
 " Plug 'rescript-lang/vim-rescript' "-- Messes with neovim. Consider using it
 " in vim instead
 Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh'
-    \ }
+			\ 'branch': 'next',
+			\ 'do': 'bash install.sh'
+			\ }
 " Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}} "Great completion library
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
 
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'alx741/vim-hindent'
+
+" moving to lsp
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
 
 "" UNUSED PLUGINS ------
 " Plug 'ziglang/zig.vim'
@@ -76,12 +81,17 @@ Plug 'alx741/vim-hindent'
 call plug#end()
 " --- END OF PLUGINS
 
-exe 'source' '~/.config/nvim/configurations/basic.vim'
-exe 'source' '~/.config/nvim/configurations/navigation.vim'
-exe 'source' '~/.config/nvim/configurations/theme-ui.vim'
-exe 'source' '~/.config/nvim/configurations/linting-formating.vim'
-exe 'source' '~/.config/nvim/configurations/purescript.vim'
-exe 'source' '~/.config/nvim/configurations/coc.vim'
-exe 'source' '~/.config/nvim/configurations/nim.vim'
-exe 'source' '~/.config/nvim/configurations/php.vim'
-exe 'source' '~/.config/nvim/configurations/ocaml.vim'
+source ~/.config/nvim/configurations/basic.vim
+source ~/.config/nvim/configurations/navigation.vim
+source ~/.config/nvim/configurations/theme-ui.vim
+source ~/.config/nvim/configurations/linting-formating.vim
+" source ~/.config/nvim/configurations/purescript.vim
+" exe 'source' '~/.config/nvim/configurations/coc.vim'
+source ~/.config/nvim/configurations/lsp-config.vim
+source ~/.config/nvim/configurations/nim.vim
+source ~/.config/nvim/configurations/php.vim
+source ~/.config/nvim/configurations/javascript.vim
+source ~/.config/nvim/configurations/ocaml.vim
+
+luafile ~/.config/nvim/configurations/compe-config.lua
+luafile ~/.config/nvim/configurations/language-lsp.lua

@@ -49,14 +49,14 @@ set ignorecase
 " Ignore case when searching lowercase
 set smartcase
 " Stop highlighting on Enter
-map <CR> :noh<CR>
+map <CR> :nohlsearch<CR>
 
 " highlight cursor position
 " set cursorline
 " set cursorcolumn
 
 "remove highlight after search
-nmap <esc><esc> :noh<return>
+nmap <esc><esc> :nohlsearch<return>
 
 " Set the title of the iterm tab
 set title

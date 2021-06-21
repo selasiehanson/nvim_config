@@ -56,6 +56,9 @@ Plug 'alx741/vim-hindent'
 " moving to lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
+Plug 'RishabhRD/popfix'
+Plug 'RishabhRD/nvim-lsputils'
+Plug 'scalameta/nvim-metals'
 
 "" UNUSED PLUGINS ------
 " Plug 'ziglang/zig.vim'
@@ -92,6 +95,7 @@ source ~/.config/nvim/configurations/nim.vim
 source ~/.config/nvim/configurations/php.vim
 source ~/.config/nvim/configurations/javascript.vim
 source ~/.config/nvim/configurations/ocaml.vim
+source ~/.config/nvim/configurations/scala.vim
 
 luafile ~/.config/nvim/configurations/compe-config.lua
 luafile ~/.config/nvim/configurations/language-lsp.lua

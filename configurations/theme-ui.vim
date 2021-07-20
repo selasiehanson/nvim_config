@@ -9,7 +9,8 @@ if (&t_Co == 256 || has('gui_running'))
     " color space-vim-dark
     " colorscheme spacegray
     " colorscheme onedark
-    colorscheme molokai
+    " colorscheme molokai
+    colorscheme sitruuna
     " colorscheme gruvbox
     " colorscheme aurora
     " colorscheme ayu
@@ -19,9 +20,10 @@ if (&t_Co == 256 || has('gui_running'))
     " color space-vim-dark
     " colorscheme onedark
     " colorscheme onedark
-    colorscheme gruvbox
+    " colorscheme gruvbox
     " colorscheme aurora
     " colorscheme ayu
+    colorscheme sitruuna
   endif
 endif
 
@@ -38,5 +40,6 @@ let g:space_vim_dark_background = 234
 " POWER LINE CUSTOMIZATION
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#displayed_head_limit = 17
+let g:sitruuna_fzf = 0
 
 

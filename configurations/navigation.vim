@@ -17,6 +17,9 @@ function! NERDTreeToggleInCurDir()
 endfunction
 
 
+nnoremap <silent> ]q :cnext <CR>
+nnoremap <silent> [q :cprevious <CR>
+
 " find search for a word and type in it's replacement
 nnoremap <leader>w :s/\(<c-r>=expand("<cword>")<cr>\)/
 
@@ -39,9 +42,15 @@ nnoremap // :lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>
 
 " pick a color scheme
 nnoremap <Leader>cs :lua require'telescope.builtin'.colorscheme{}<CR>
+" find word under cursor
+" This version is a bit slow due to how telescope performs the search
+" nnoremap ??? :lua require 'telescope.builtin'.live_grep{ default_text = vim.fn.expand("<cword>") }<CR>
+" we use this instead
+nnoremap ??? :lua require 'telescope.builtin'.grep_string{ search = vim.fn.expand("<cword>") }<CR>
 
+
+" HAS THE SAME Problem as above
 " ripgrep like grep through dir
 nnoremap ?? :lua require'telescope.builtin'.live_grep{}<CR>
 
-" find word under cursor
-nnoremap ??? :lua require 'telescope.builtin'.live_grep{ default_text = vim.fn.expand("<cword>") }<CR>
+

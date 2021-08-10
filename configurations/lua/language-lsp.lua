@@ -37,7 +37,6 @@ local on_attach = function(client, bufnr)
   --   '﬌', -- Snippet
   --   '', -- Color
   --   '', -- File
-  --   '', -- Reference
   --   '', -- Folder
   --   '', -- EnumMember
   --   '', -- Constant

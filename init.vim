@@ -93,7 +93,6 @@ Plug 'scalameta/nvim-metals'
 
 call plug#end()
 " --- END OF PLUGINS
-
 source ~/.config/nvim/configurations/basic.vim
 source ~/.config/nvim/configurations/navigation.vim
 source ~/.config/nvim/configurations/theme-ui.vim

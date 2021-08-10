@@ -55,8 +55,6 @@ map <CR> :nohlsearch<CR>
 " set cursorline
 " set cursorcolumn
 
-"remove highlight after search
-nmap <esc><esc> :nohlsearch<return>
 
 " Set the title of the iterm tab
 set title

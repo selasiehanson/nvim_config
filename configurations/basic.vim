@@ -67,9 +67,16 @@ noremap <C-l> <C-w>l
 
 set laststatus=2
 
-" TODO Map this
+
+" Increase the current pane
 function! IncreasePane()
-  " If NERDTree is open in the current buffer
-    echo "Welping"
     execute ":vertical res +5"
 endfunction
+
+" Decrease the current pane
+function! DecreasePane()
+    execute ":vertical res -5"
+endfunction
+
+nnoremap <leader>e :call IncreasePane() <CR>
+nnoremap <leader>d :call DecreasePane() <CR>

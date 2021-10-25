@@ -72,18 +72,30 @@ end
 
 local servers =  {
   "bashls",
-  "gopls",
+  -- "gopls",
   "tsserver",
   "ocamllsp",
-  "elmls",
+  -- "elmls",
   "cssls",
   "nimls",
   "purescriptls",
   "intelephense", --php
   "clangd",
-  "zls"
+  -- "zls"
 }
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+
+-- require "lspconfig".efm.setup {
+--     init_options = {documentFormatting = true, codeAction = true},
+--     filetypes = {"javascriptreact", "javascript", "typescript", "typescriptreact"},
+--     settings = {
+--         rootMarkers = {".git/"},
+--         languages = {
+--             javascript = {eslint},
+--             javascriptreact = {eslint},
+--         }
+--     }
+-- }

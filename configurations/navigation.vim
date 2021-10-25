@@ -38,7 +38,7 @@ nnoremap <Leader>t :lua require'telescope.builtin'.git_files{}<CR>
 nnoremap ; :lua require'telescope.builtin'.buffers{}<CR>
 
 " fuzzy find a piece of text in the currently opened buffer
-nnoremap // :lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>
+nnoremap // <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>
 
 " pick a color scheme
 nnoremap <Leader>cs :lua require'telescope.builtin'.colorscheme{}<CR>
@@ -51,6 +51,6 @@ nnoremap ??? :lua require 'telescope.builtin'.grep_string{ search = vim.fn.expan
 
 " HAS THE SAME Problem as above
 " ripgrep like grep through dir
-nnoremap ?? :lua require'telescope.builtin'.live_grep{}<CR>
-
-
+" nnoremap ?? :lua require'telescope.builtin'.live_grep{}<CR>
+" This allows you to type what you want to search for
+nnoremap ??  :Telescope grep_string search=

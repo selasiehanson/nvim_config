@@ -7,17 +7,17 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'junegunn/fzf.vim'
 
 " Themes
-Plug 'tomasr/molokai'
-Plug 'joshdick/onedark.vim'
-Plug 'rakr/vim-one'
-Plug 'morhetz/gruvbox'
-Plug 'fxn/vim-monochrome'
+" Plug 'tomasr/molokai'
+" Plug 'joshdick/onedark.vim'
+" Plug 'rakr/vim-one'
+" Plug 'morhetz/gruvbox'
+" Plug 'fxn/vim-monochrome'
 Plug 'haze/sitruuna.vim'
 " End of themes
 
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'shumphrey/fugitive-gitlab.vim'
+
+Plug 'tpope/vim-fugitive' "for git stuff
+Plug 'tpope/vim-rhubarb' " more git stuff
 Plug 'sheerun/vim-polyglot'
 " Plug 'pangloss/vim-javascript'    " JavaScript support
 " Plug 'leafgarland/typescript-vim' " TypeScript syntax
@@ -28,10 +28,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'szw/vim-maximizer'
 Plug 'neomake/neomake'
 Plug 'tpope/vim-projectionist' " required for some navigation features
-Plug 'slashmili/alchemist.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'slashmili/alchemist.vim' "For Elixir
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " For Golang
 Plug 'tpope/vim-commentary'
-Plug 'mileszs/ack.vim'
+" Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'bling/vim-airline'
@@ -42,7 +42,7 @@ Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'alaviss/nim.nvim'
 Plug 'teal-language/vim-teal'
-Plug 'ziglang/zig.vim'
+" Plug 'ziglang/zig.vim'
 " Plug 'rescript-lang/vim-rescript' "-- Messes with neovim. Consider using it
 " in vim instead
 Plug 'autozimu/LanguageClient-neovim', {
@@ -54,7 +54,15 @@ Plug 'autozimu/LanguageClient-neovim', {
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
 
 " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'alx741/vim-hindent'
+
+""""""""""""""""""""""
+""""""""""""""""""""""
+"""" HASKELL """""
+"""" HASKELL """""
+""""""""""""""""""""""
+""""""""""""""""""""""
+
+" Plug 'alx741/vim-hindent'
 
 " moving to lsp
 Plug 'nvim-lua/plenary.nvim'

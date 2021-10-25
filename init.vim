@@ -69,9 +69,19 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
+""""""" completions
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'onsails/lspkind-nvim'
+""""""" end compeletions
+
 Plug 'glepnir/lspsaga.nvim'
-Plug 'hrsh7th/nvim-compe'
+" Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
@@ -115,6 +125,7 @@ source ~/.config/nvim/configurations/ocaml.vim
 source ~/.config/nvim/configurations/scala.vim
 source ~/.config/nvim/configurations/zig.vim
 
-luafile ~/.config/nvim/configurations/lua/compe-config.lua
+" luafile ~/.config/nvim/configurations/lua/compe-config.lua
+luafile ~/.config/nvim/configurations/lua/cmp-config.lua
 luafile ~/.config/nvim/configurations/lua/language-lsp.lua
 luafile ~/.config/nvim/configurations/lua/telescope.lua

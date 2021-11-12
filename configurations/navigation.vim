@@ -42,11 +42,20 @@ nnoremap // <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>
 
 " pick a color scheme
 nnoremap <Leader>cs :lua require'telescope.builtin'.colorscheme{}<CR>
+" Add . and @ to iskeyword else they don't get selected when trying to find
+" expressions such as this.doSomething
+" Withouth these sets only this or doSomething will be selected
+set iskeyword+=.
+set iskeyword+=@-@
+
+
 " find word under cursor
 " This version is a bit slow due to how telescope performs the search
 " nnoremap ??? :lua require 'telescope.builtin'.live_grep{ default_text = vim.fn.expand("<cword>") }<CR>
 " we use this instead
 nnoremap ??? :lua require 'telescope.builtin'.grep_string{ search = vim.fn.expand("<cword>") }<CR>
+vnoremap ??? :lua require 'telescope.builtin'.grep_string{ search = vim.fn.expand("<cword>") }<CR>
+
 
 
 " HAS THE SAME Problem as above

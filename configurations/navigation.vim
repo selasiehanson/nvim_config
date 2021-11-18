@@ -45,8 +45,9 @@ nnoremap <Leader>cs :lua require'telescope.builtin'.colorscheme{}<CR>
 " Add . and @ to iskeyword else they don't get selected when trying to find
 " expressions such as this.doSomething
 " Withouth these sets only this or doSomething will be selected
-set iskeyword+=.
-set iskeyword+=@-@
+" TODO only enable these when in visual mode
+" set iskeyword+=.
+" set iskeyword+=@-@
 
 
 " find word under cursor

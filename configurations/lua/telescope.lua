@@ -1,5 +1,4 @@
 local actions = require('telescope.actions')
-require('telescope').load_extension('fzf')
 require('telescope').setup{
   defaults = {
     mappings = {
@@ -18,3 +17,4 @@ require('telescope').setup{
     }
   }
 }
+require('telescope').load_extension('fzf')

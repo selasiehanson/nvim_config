@@ -8,8 +8,7 @@ nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 " buf.hover is the one that actually shoes the signature
-" nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> K <cmd>Lspsaga hover_doc<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 
 " nnoremap <silent> K <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> [c <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>

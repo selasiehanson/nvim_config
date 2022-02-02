@@ -81,6 +81,7 @@ local servers =  {
   "purescriptls",
   "intelephense", --php
   "clangd",
+  "clojure_lsp",
   -- "zls"
 }
 

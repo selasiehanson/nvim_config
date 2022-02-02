@@ -42,13 +42,17 @@ Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'alaviss/nim.nvim'
 Plug 'teal-language/vim-teal'
+Plug 'Olical/conjure'
+Plug 'clojure-lsp/clojure-lsp'
+Plug 'dmac/vim-cljfmt'
+
 " Plug 'ziglang/zig.vim'
 " Plug 'rescript-lang/vim-rescript' "-- Messes with neovim. Consider using it
 " in vim instead
-Plug 'autozimu/LanguageClient-neovim', {
-			\ 'branch': 'next',
-			\ 'do': 'bash install.sh'
-			\ }
+" Plug 'autozimu/LanguageClient-neovim', {
+" 			\ 'branch': 'next',
+" 			\ 'do': 'bash install.sh'
+" 			\ }
 " Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}} "Great completion library
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}

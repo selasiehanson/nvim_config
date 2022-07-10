@@ -45,6 +45,8 @@ Plug 'teal-language/vim-teal'
 Plug 'Olical/conjure'
 Plug 'clojure-lsp/clojure-lsp'
 Plug 'dmac/vim-cljfmt'
+Plug 'https://github.com/koka-lang/koka', { 'rtp': 'support/vim' }
+
 
 " Plug 'ziglang/zig.vim'
 " Plug 'rescript-lang/vim-rescript' "-- Messes with neovim. Consider using it

@@ -13,6 +13,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'morhetz/gruvbox'
 " Plug 'fxn/vim-monochrome'
 Plug 'haze/sitruuna.vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 " End of themes
 
 
@@ -45,15 +46,13 @@ Plug 'teal-language/vim-teal'
 " Plug 'ziglang/zig.vim'
 " Plug 'rescript-lang/vim-rescript' "-- Messes with neovim. Consider using it
 " in vim instead
-Plug 'autozimu/LanguageClient-neovim', {
-			\ 'branch': 'next',
-			\ 'do': 'bash install.sh'
-			\ }
-" Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
-" Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}} "Great completion library
-" Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
 
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" TODO remove:  Not needed anymore - The lsp should be enough
+" Plug 'autozimu/LanguageClient-neovim', {
+" 			\ 'branch': 'next',
+" 			\ 'do': 'bash install.sh'
+" 			\ }
+" Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
 
 """"""""""""""""""""""
 """"""""""""""""""""""
@@ -116,7 +115,6 @@ source ~/.config/nvim/configurations/navigation.vim
 source ~/.config/nvim/configurations/theme-ui.vim
 source ~/.config/nvim/configurations/linting-formating.vim
 " source ~/.config/nvim/configurations/purescript.vim
-" exe 'source' '~/.config/nvim/configurations/coc.vim'
 source ~/.config/nvim/configurations/lsp-config.vim
 source ~/.config/nvim/configurations/nim.vim
 source ~/.config/nvim/configurations/php.vim
@@ -125,7 +123,6 @@ source ~/.config/nvim/configurations/ocaml.vim
 source ~/.config/nvim/configurations/scala.vim
 source ~/.config/nvim/configurations/zig.vim
 
-" luafile ~/.config/nvim/configurations/lua/compe-config.lua
 luafile ~/.config/nvim/configurations/lua/cmp-config.lua
 luafile ~/.config/nvim/configurations/lua/language-lsp.lua
 luafile ~/.config/nvim/configurations/lua/telescope.lua

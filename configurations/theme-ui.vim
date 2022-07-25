@@ -10,7 +10,8 @@ if (&t_Co == 256 || has('gui_running'))
     " colorscheme spacegray
     " colorscheme onedark
     " colorscheme molokai
-    colorscheme sitruuna
+    " colorscheme sitruuna
+    colorscheme tokyonight
     " colorscheme gruvbox
     " colorscheme aurora
     " colorscheme ayu
@@ -24,6 +25,7 @@ if (&t_Co == 256 || has('gui_running'))
     " colorscheme aurora
     " colorscheme ayu
     colorscheme sitruuna
+    colorscheme tokyonight
   endif
 endif
 

@@ -88,6 +88,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " Plug 'RishabhRD/nvim-lsputils'
 Plug 'scalameta/nvim-metals'
 
+
 "" UNUSED PLUGINS ------
 " Plug 'reasonml-editor/vim-reason-plus'
 " Plug 'elmcast/elm-vim'
@@ -107,6 +108,9 @@ Plug 'scalameta/nvim-metals'
 
 "" END UNUSED PLUGINS ------
 
+" loading local plugins
+" lua require('load_plugins')
+Plug '/Users/selasiehanson/Work/Labs/nvim_plugins/greeter.nvim'
 
 call plug#end()
 " --- END OF PLUGINS
@@ -125,4 +129,7 @@ source ~/.config/nvim/configurations/zig.vim
 
 luafile ~/.config/nvim/configurations/lua/cmp-config.lua
 luafile ~/.config/nvim/configurations/lua/language-lsp.lua
-luafile ~/.config/nvim/configurations/lua/telescope.lua
+lua require('telescope_conf')
+
+" TODO move this into it's own plugin in the future
+luafile ~/.config/nvim/configurations/lua/ts-eval.lua

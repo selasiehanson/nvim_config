@@ -81,6 +81,7 @@ local servers =  {
   "purescriptls",
   "intelephense", --php
   "clangd",
+  "sumneko_lua",
   -- "zls"
 }
 

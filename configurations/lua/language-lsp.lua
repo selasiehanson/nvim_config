@@ -74,7 +74,7 @@ local servers =  {
   "bashls",
   -- "gopls",
   "tsserver",
-  "ocamllsp",
+  -- "ocamllsp",
   -- "elmls",
   "cssls",
   "nimls",
@@ -83,12 +83,21 @@ local servers =  {
   "clangd",
   "sumneko_lua",
   "rls",
+  "ols",
+  "clojure_lsp",
   -- "zls"
 }
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+
+local ocaml_lsp_command = { 'ocamllsp', '--fallback-read-dot-merlin' } -- fallback-read-dot-merlin  is needed for melange
+nvim_lsp['ocamllsp'].setup {
+  cmd = ocaml_lsp_command,
+  on_attach = on_attach
+
+}
 
 -- require "lspconfig".efm.setup {
 --     init_options = {documentFormatting = true, codeAction = true},

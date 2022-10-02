@@ -22,6 +22,7 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+set foldlevelstart=99
 
 " Use comma for leader
 let g:mapleader=','

@@ -82,6 +82,7 @@ local servers =  {
   "intelephense", --php
   "clangd",
   "sumneko_lua",
+  "rls",
   -- "zls"
 }
 

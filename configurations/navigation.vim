@@ -6,7 +6,6 @@ noremap <leader>n :NERDTreeToggle<CR>
 "NerdTree
 let g:NERDTreeGitStatusShowIgnored=0
 "Show current file in directory
-" nmap <silent> <C-I> :call NERDTreeToggleInCurDir()<cr>
 function! NERDTreeToggleInCurDir()
   " If NERDTree is open in the current buffer
   if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
@@ -15,6 +14,8 @@ function! NERDTreeToggleInCurDir()
     exe ":NERDTreeFind"
   endif
 endfunction
+" nmap <silent> <C-I> :call NERDTreeToggleInCurDir()<cr>
+nnoremap <leader>nf :call NERDTreeToggleInCurDir() <CR>
 
 
 nnoremap <silent> ]q :cnext <CR>

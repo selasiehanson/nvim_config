@@ -82,9 +82,9 @@ local servers =  {
   "intelephense", --php
   "clangd",
   "sumneko_lua",
-  "rls",
+  "rust_analyzer", -- installed with hombrew `brew install rust-analyzer`
   "ols",
-  "clojure_lsp",
+  -- "clojure_lsp",
   -- "zls"
 }
 

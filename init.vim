@@ -125,6 +125,7 @@ source ~/.config/nvim/configurations/php.vim
 source ~/.config/nvim/configurations/javascript.vim
 source ~/.config/nvim/configurations/ocaml.vim
 source ~/.config/nvim/configurations/scala.vim
+source ~/.config/nvim/configurations/nelua.vim
 source ~/.config/nvim/configurations/zig.vim
 
 luafile ~/.config/nvim/configurations/lua/cmp-config.lua

@@ -43,16 +43,15 @@ Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'alaviss/nim.nvim'
 Plug 'teal-language/vim-teal'
+Plug 'Olical/conjure'
+Plug 'clojure-lsp/clojure-lsp'
+Plug 'dmac/vim-cljfmt'
+Plug 'https://github.com/koka-lang/koka', { 'rtp': 'support/vim' }
+
+
 " Plug 'ziglang/zig.vim'
 " Plug 'rescript-lang/vim-rescript' "-- Messes with neovim. Consider using it
-" in vim instead
 
-" TODO remove:  Not needed anymore - The lsp should be enough
-" Plug 'autozimu/LanguageClient-neovim', {
-" 			\ 'branch': 'next',
-" 			\ 'do': 'bash install.sh'
-" 			\ }
-" Plug 'prabirshrestha/asyncomplete.vim' "needed for nim.nvim
 
 """"""""""""""""""""""
 """"""""""""""""""""""

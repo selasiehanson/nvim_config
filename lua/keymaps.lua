@@ -39,20 +39,21 @@ map("n", "<C-l>", "<C-w>l", options)
 -- " https://rishabhrd.github.io/jekyll/update/2020/09/19/nvim_lsp_config.html
 
 -- " LSP config (the mappings used in the default file don't quite work right)
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
-map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", options)
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", options)
-map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", options)
+-- TODO clean these up so we use lua commands
+map("n", "gd", vim.lsp.buf.definition, options)
+map("n", "gD", vim.lsp.buf.declaration, options)
+map("n", "gr", vim.lsp.buf.references, options)
+map("n", "gi", vim.lsp.buf.implementation, options)
 -- " buf.hover is the one that actually shoes the signature
-map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", options)
+map("n", "K", vim.lsp.buf.hover, options)
 
-map("n", "[c", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", options)
-map("n", "]c", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", options)
+map("n", "[c", vim.lsp.diagnostic.goto_prev, options)
+map("n", "]c", vim.lsp.diagnostic.goto_next, options)
 
-map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)
-map("n", "<leader>af", '<cmd>lua vim.diagnostic.open_float({scope="line"})<CR>', options)
-map("n", "<leader>as", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", options)
--- " map("n", "<leader>ff", "<cmd>lua vim.lsp.buf.code_action()<CR>",
+map("n", "<leader>rn", vim.lsp.buf.rename, options)
+map("n", "<leader>af", vim.diagnostic.open_float({scope="line"}), options)
+map("n", "<leader>as", vim.lsp.buf.document_symbol, options)
+-- " map("n", "<leader>ff", vim.lsp.buf.code_action,
 
 -- " map("n", <leader>ff "<cmd>Lspsaga code_action<CR>
 -- " xnoremap "n", <leader>ff "<cmd>Lspsaga range_code_action<CR>

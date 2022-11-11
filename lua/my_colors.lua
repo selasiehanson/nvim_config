@@ -30,6 +30,7 @@
 -- vim.opt.colorscheme =  "tokyonight"
 -- vim.g.colors_name = "tokyonight"
 local color_scheme  = "tokyonight"
+
 vim.opt.termguicolors = true
 vim.cmd('colorscheme ' .. color_scheme)
 

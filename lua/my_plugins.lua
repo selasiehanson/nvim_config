@@ -7,6 +7,9 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
+require("load_plugins")
+
+-- require('keymaps')
 -- Themes
 -- Plug 'tomasr/molokai'
 -- Plug 'joshdick/onedark.vim'

@@ -5,10 +5,6 @@ require('cmp-config')
 require('language-lsp')
 require('keymaps')
 
--- TODO move this into its own plugin in the future
-require ('configurations/lua/ts-eval')
-
-
 --
 -- Sets
 -------------------------------------

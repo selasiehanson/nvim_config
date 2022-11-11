@@ -108,8 +108,8 @@ Plug 'scalameta/nvim-metals'
 "" END UNUSED PLUGINS ------
 
 " loading local plugins
-" lua require('load_plugins')
-Plug '/Users/selasiehanson/Work/Labs/nvim_plugins/greeter.nvim'
+luafile ~/.config/nvim/lua/load_plugins.lua
+" lua require('lua.load_plugins')
 
 call plug#end()
 " --- END OF PLUGINS

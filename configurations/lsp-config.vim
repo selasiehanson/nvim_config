@@ -15,7 +15,7 @@ nnoremap <silent> [c <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> ]c <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 nnoremap <silent> <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> <leader>af <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <silent> <leader>af <cmd>lua vim.diagnostic.open_float({scope="line"})<CR>
 nnoremap <silent> <leader>as <cmd>lua vim.lsp.buf.document_symbol()<CR>
 " nnoremap <silent> <leader>ff <cmd>lua vim.lsp.buf.code_action()<CR>
 

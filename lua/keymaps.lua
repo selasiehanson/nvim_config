@@ -47,11 +47,16 @@ map("n", "gi", vim.lsp.buf.implementation, options)
 -- " buf.hover is the one that actually shoes the signature
 map("n", "K", vim.lsp.buf.hover, options)
 
-map("n", "[c", vim.lsp.diagnostic.goto_prev, options)
-map("n", "]c", vim.lsp.diagnostic.goto_next, options)
+map("n", "[c", vim.diagnostic.goto_prev, options)
+map("n", "]c", vim.diagnostic.goto_next, options)
 
 map("n", "<leader>rn", vim.lsp.buf.rename, options)
-map("n", "<leader>af", vim.diagnostic.open_float({scope="line"}), options)
+map("n", "<leader>af",
+        function()
+            vim.diagnostic.open_float({scope="line"})
+        end
+, options)
+
 map("n", "<leader>as", vim.lsp.buf.document_symbol, options)
 -- " map("n", "<leader>ff", vim.lsp.buf.code_action,
 
@@ -123,6 +128,9 @@ end
 
 function DecreasePane()
 end
+
+map("n", '<leader>e', IncreasePane, options)
+map("n", '<leader>d', DecreasePane, options)
 
 
 -- " Increase the current pane

@@ -124,9 +124,15 @@ map("n", "??",  ":Telescope grep_string search=", options)
 
 
 function IncreasePane()
+    vim.cmd([[
+        execute ":vertical res +5"
+    ]])
 end
 
 function DecreasePane()
+    vim.cmd([[
+        execute ":vertical res -5"
+    ]])
 end
 
 map("n", '<leader>e', IncreasePane, options)

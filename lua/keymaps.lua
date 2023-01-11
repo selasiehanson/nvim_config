@@ -17,9 +17,9 @@ end
 --------------------------------------------
 
 -- my custom configuration
-map("n", "<C-n>",     ":NERDTreeToggle<CR>", options)
+map("n", "<C-n>", ":NERDTreeToggle<CR>", options)
 map("n", "<leader>n", ":NERDTreeToggle<CR>", options)
-map("n", "]q", ":cnext <CR>",     options)
+map("n", "]q", ":cnext <CR>", options)
 map("n", "[q", ":cprevious <CR>", options)
 
 
@@ -28,7 +28,7 @@ map("n", "[q", ":cprevious <CR>", options)
 -- MOVEMENT
 -----------------------------------------
 -- map <CR> :nohlsearch<CR>
-map("n", "<CR>",  ":nohlsearch<CR>", options)
+map("n", "<CR>", ":nohlsearch<CR>", options)
 map("n", "<C-h>", "<C-w>h", options)
 map("n", "<C-j>", "<C-w>j", options)
 map("n", "<C-k>", "<C-w>k", options)
@@ -69,8 +69,14 @@ map("n", "<leader>cs", builtin.colorscheme, options)
 -- " we use this instead
 map("n", "???", ":lua require 'telescope.builtin'.grep_string{ search = vim.fn.expand('<cword>') }<CR>", options)
 map("v", "???", ":lua require 'telescope.builtin'.grep_string{ search = vim.fn.expand('<cword>') }<CR>", options)
-map("n", "??",  ":Telescope grep_string search=", options)
+map("n", "??", ":Telescope grep_string search=", options)
 
+
+map("n", "<leader>af",
+    function()
+        vim.diagnostic.open_float({ scope = "line" })
+    end
+    , options)
 
 function IncreasePane()
     vim.cmd([[
@@ -88,11 +94,3 @@ map("n", '<leader>e', IncreasePane, options)
 map("n", '<leader>d', DecreasePane, options)
 
 
-
---
--- local ocaml_lsp_command = { 'ocamllsp', '--fallback-read-dot-merlin' } -- fallback-read-dot-merlin  is needed for melange
--- nvim_lsp['ocamllsp'].setup {
---   cmd = ocaml_lsp_command,
---   on_attach = on_attach
---
--- }

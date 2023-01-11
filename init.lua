@@ -61,6 +61,9 @@ require('packer').startup(function(use)
      branch = 'main' 
   }
 
+  
+  use 'tpope/vim-surround'
+
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
@@ -75,6 +78,7 @@ require('packer').startup(function(use)
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
+  -- local has_plugins = false
   if has_plugins then
     plugins(use)
   end
@@ -383,18 +387,7 @@ local mason_lspconfig = require 'mason-lspconfig'
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
---
--- cmd = {
---        'ocamllsp', '--fallback-read-dot-merlin' 
---   }
 
---
--- local ocaml_lsp_command = { 'ocamllsp', '--fallback-read-dot-merlin' } -- fallback-read-dot-merlin  is needed for melange
--- nvim_lsp['ocamllsp'].setup {
---   cmd = ocaml_lsp_command,
---   on_attach = on_attach
---
--- }
 
 mason_lspconfig.setup_handlers {
   function(server_name)

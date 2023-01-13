@@ -458,3 +458,4 @@ cmp.setup {
 
 ---  CUSTOM CONFIGURAITION STARTS HERE
 require('keymaps');
+require('ss.globals');

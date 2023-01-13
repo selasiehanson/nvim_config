@@ -10,7 +10,6 @@ local custom_plugins = function(use)
 
         for _, plugin in ipairs(local_plugins) do
             local pl = local_plugin_directory .. "/" .. plugin
-            -- print(pl .. " loaded ....")
             use { pl, event = 'VimEnter' }
         end
 
@@ -18,19 +17,30 @@ local custom_plugins = function(use)
 
 end
 
-function plugins(use)
+local function other_plugins(use)
     use({
         "glepnir/lspsaga.nvim",
         branch = "main",
         config = function()
             local saga = require("lspsaga")
 
-            saga.init_lsp_saga({
+            saga.setup({
                 -- your configuration
             })
         end,
     })
 
+    use {
+        'szw/vim-maximizer'
+    }
+
+    use {
+        'ntpeters/vim-better-whitespace'
+    }
+end
+
+function plugins(use)
+    other_plugins(use)
     custom_plugins(use)
 end
 

@@ -71,6 +71,13 @@ map("n", "???", ":lua require 'telescope.builtin'.grep_string{ search = vim.fn.e
 map("v", "???", ":lua require 'telescope.builtin'.grep_string{ search = vim.fn.expand('<cword>') }<CR>", options)
 map("n", "??", ":Telescope grep_string search=", options)
 
+-- resume last command/search sent to telescope
+map("n", "<leader>re", ":Telescope resume<CR>", options)
+
+
+map("n","<leader>ff", ":Lspsaga code_action<CR>", options)
+map("v","<leader>ff", ":<C-U>Lspsaga range_code_action<CR>", options)
+
 
 map("n", "<leader>af",
     function()

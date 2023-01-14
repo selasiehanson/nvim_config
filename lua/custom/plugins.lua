@@ -4,7 +4,7 @@ local custom_plugins = function(use)
 
 
     print(local_plugin_directory)
-    if local_plugin_directory then
+    if local_plugin_directory ~= vim.NIL then
 
         local local_plugins = { "greeter.nvim", "gitbrowser.nvim", "evaluator.nvim" }
 

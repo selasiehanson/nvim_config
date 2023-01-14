@@ -57,11 +57,11 @@ require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
 
   use {
-    'folke/tokyonight.nvim', 
-     branch = 'main' 
+    'folke/tokyonight.nvim',
+    branch = 'main'
   }
 
-  
+
   use 'tpope/vim-surround'
 
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
@@ -397,13 +397,32 @@ mason_lspconfig.setup_handlers {
       settings = servers[server_name],
     }
   end,
-  ["ocamllsp"] = function ()
+  ["ocamllsp"] = function()
     local ocaml_lsp_command = { 'ocamllsp', '--fallback-read-dot-merlin' } -- fallback-read-dot-merlin  is needed for melange
-    require'lspconfig'.ocamllsp.setup{
+    require 'lspconfig'.ocamllsp.setup {
       cmd = ocaml_lsp_command,
       on_attach = on_attach,
     }
   end,
+  --
+  -- ["olslsp"]= function ()
+  --  require'lspconfig'.ocamllsp.setup{
+  --     cmd = 'ols',
+  --     on_attach = on_attach,
+  --   }
+  -- end
+}
+
+-- Mason does not support odin so we have to do it manually
+local util = require 'lspconfig.util'
+
+local nvim_lsp = require('lspconfig')
+nvim_lsp['ols'].setup {
+  on_attach = on_attach,
+  filetypes = {"odin"},
+  rootPatterns = {"ols.json"},
+  settings = {
+  }
 }
 
 -- Turn on lsp status information

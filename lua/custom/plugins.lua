@@ -37,6 +37,16 @@ local function other_plugins(use)
     use {
         'ntpeters/vim-better-whitespace'
     }
+
+    use {
+        'alaviss/nim.nvim'
+    }
+
+    use {
+        'Tetralux/odin.vim'
+    }
+
+    use { 'ziglang/zig.vim' }
 end
 
 function plugins(use)

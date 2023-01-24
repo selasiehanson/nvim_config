@@ -1,9 +1,8 @@
 local custom_plugins = function(use)
     local local_plugin_directory = vim.fn.getenv("MY_NVIM_PLUGINS")
-    -- local Plug = vim.fn['plug#']
 
 
-    print(local_plugin_directory)
+    -- print(local_plugin_directory)
     if local_plugin_directory ~= vim.NIL then
 
         local local_plugins = { "greeter.nvim", "gitbrowser.nvim", "evaluator.nvim" }

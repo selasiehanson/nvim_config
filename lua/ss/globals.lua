@@ -16,6 +16,10 @@ RELOAD = function(...)
   return reloader(...)
 end
 
+-- how to use
+-- in neovim can do the following
+-- :lua R("greeter")
+-- where greeter is lua file/module
 R = function(name)
   RELOAD(name)
   return require(name)

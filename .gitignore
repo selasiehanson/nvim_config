@@ -1,6 +1,7 @@
 autoload
 .netrwhist
 plugged
+pack
 plugin/packer_compiled.lua
 
 

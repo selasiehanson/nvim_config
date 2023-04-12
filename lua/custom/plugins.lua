@@ -46,6 +46,7 @@ local function other_plugins(use)
     }
 
     use { 'ziglang/zig.vim' }
+    use { '~/Engine/source_code/jakt/editors/vim', as = 'Jakt' }
 end
 
 function plugins(use)

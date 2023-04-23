@@ -21,6 +21,7 @@ map("n", "<C-n>", ":NERDTreeToggle<CR>", options)
 map("n", "<leader>n", ":NERDTreeToggle<CR>", options)
 map("n", "]q", ":cnext <CR>", options)
 map("n", "[q", ":cprevious <CR>", options)
+map("n", "ff", ":lua  vim.lsp.buf.format()<CR>", options);
 
 
 ----------------------------------------
@@ -34,6 +35,10 @@ map("n", "<C-j>", "<C-w>j", options)
 map("n", "<C-k>", "<C-w>k", options)
 map("n", "<C-l>", "<C-w>l", options)
 
+-- Copilot
+-- use <C-J> to accept the suggestion. Tab is used by another plugin
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 -- Telescope
 -- Show all telescope bindings
@@ -69,14 +74,28 @@ map("n", "<leader>cs", builtin.colorscheme, options)
 -- " we use this instead
 map("n", "???", ":lua require 'telescope.builtin'.grep_string{ search = vim.fn.expand('<cword>') }<CR>", options)
 map("v", "???", ":lua require 'telescope.builtin'.grep_string{ search = vim.fn.expand('<cword>') }<CR>", options)
-map("n", "??", ":Telescope grep_string search=", options)
+map("n", "??", ":FindMeText <CR>", options)
+
+
+local find_word = function(word_to_search)
+    builtin.grep_string({ search = word_to_search })
+end
+
+vim.api.nvim_create_user_command('FindMeText', function()
+    local text_to_search = vim.fn.input "Search ?: "
+    find_word(text_to_search)
+
+end,
+    { nargs = 0, desc = 'Find words with spaces' }
+)
+
 
 -- resume last command/search sent to telescope
 map("n", "<leader>re", ":Telescope resume<CR>", options)
 
 
-map("n","<leader>ff", ":Lspsaga code_action<CR>", options)
-map("v","<leader>ff", ":<C-U>Lspsaga range_code_action<CR>", options)
+map("n", "<leader>ff", ":Lspsaga code_action<CR>", options)
+map("v", "<leader>ff", ":<C-U>Lspsaga range_code_action<CR>", options)
 
 
 map("n", "<leader>af",
@@ -99,5 +118,3 @@ end
 
 map("n", '<leader>e', IncreasePane, options)
 map("n", '<leader>d', DecreasePane, options)
-
-

@@ -46,6 +46,7 @@ local function other_plugins(use)
     }
 
     use { 'ziglang/zig.vim' }
+    use { "Nymphium/vim-koka" }
 end
 
 function plugins(use)

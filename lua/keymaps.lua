@@ -18,7 +18,7 @@ end
 
 -- my custom configuration
 map("n", "<C-n>", ":NERDTreeToggle<CR>", options)
-map("n", "<leader>n", ":NERDTreeToggle<CR>", options)
+map("n", "<leader>f", ":NERDTreeFind<CR>", options)
 map("n", "]q", ":cnext <CR>", options)
 map("n", "[q", ":cprevious <CR>", options)
 map("n", "ff", ":lua  vim.lsp.buf.format()<CR>", options);

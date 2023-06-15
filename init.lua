@@ -61,14 +61,20 @@ require('packer').startup(function(use)
     branch = 'main'
   }
 
+  use {
+    -- colorscheme is called nord
+    'nordtheme/vim',
+    branch = 'main'
+  }
+
 
   use 'tpope/vim-surround'
 
-  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use 'navarasu/onedark.nvim'               -- Theme inspired by Atom
+  use 'nvim-lualine/lualine.nvim'           -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions/lines
+  use 'tpope/vim-sleuth'                    -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
@@ -137,7 +143,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme tokyonight]]
+vim.cmd [[colorscheme nord]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -397,14 +403,6 @@ mason_lspconfig.setup_handlers {
       settings = servers[server_name],
     }
   end,
-  ["ocamllsp"] = function()
-    local ocaml_lsp_command = { 'ocamllsp', '--fallback-read-dot-merlin' } -- fallback-read-dot-merlin  is needed for melange
-    require 'lspconfig'.ocamllsp.setup {
-      cmd = ocaml_lsp_command,
-      on_attach = on_attach,
-    }
-  end,
-  --
   -- ["olslsp"]= function ()
   --  require'lspconfig'.ocamllsp.setup{
   --     cmd = 'ols',
@@ -413,14 +411,20 @@ mason_lspconfig.setup_handlers {
   -- end
 }
 
+local ocaml_lsp_command = { 'ocamllsp', '--fallback-read-dot-merlin' }   -- fallback-read-dot-merlin  is needed for melange
+-- local ocaml_lsp_command = { 'ocamllsp' }   -- fallback-read-dot-merlin  is needed for melange
+require 'lspconfig'.ocamllsp.setup {
+  cmd = ocaml_lsp_command,
+  on_attach = on_attach,
+}
 -- Mason does not support odin so we have to do it manually
 local util = require 'lspconfig.util'
 
 local nvim_lsp = require('lspconfig')
 nvim_lsp['ols'].setup {
   on_attach = on_attach,
-  filetypes = {"odin"},
-  rootPatterns = {"ols.json"},
+  filetypes = { "odin" },
+  rootPatterns = { "ols.json" },
   settings = {
   }
 }

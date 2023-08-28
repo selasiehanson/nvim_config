@@ -4,16 +4,13 @@ local custom_plugins = function(use)
 
     -- print(local_plugin_directory)
     if local_plugin_directory ~= vim.NIL then
-
         local local_plugins = { "greeter.nvim", "gitbrowser.nvim", "evaluator.nvim" }
 
         for _, plugin in ipairs(local_plugins) do
             local pl = local_plugin_directory .. "/" .. plugin
             use { pl, event = 'VimEnter' }
         end
-
     end
-
 end
 
 local function other_plugins(use)
@@ -47,10 +44,41 @@ local function other_plugins(use)
 
     use { 'ziglang/zig.vim' }
     use { "Nymphium/vim-koka" }
+    use({
+        "mfussenegger/nvim-dap",
+        -- config = function(_, _)
+        --     require("core.utils").load_mappings("dap")
+        -- end
+    })
+    use(
+        {
+            "rcarriga/nvim-dap-ui",
+            -- event = "VeryLazy",
+            requires = {"mfussenegger/nvim-dap"},
+            config = function()
+                local dap = require("dap")
+                local dapui = require("dapui")
+                dapui.setup()
+                dap.listeners.after.event_initialized["dapui_config"] = function()
+                    dapui.open()
+                end
+                dap.listeners.before.event_terminated["dapui_config"] = function()
+                    dapui.close()
+                end
+                dap.listeners.before.event_exited["dapui_config"] = function()
+                    dapui.close()
+                end
+            end
+        }
+    )
     use { '~/Engine/source_code/jakt/editors/vim', as = 'Jakt' }
+
+
+    -- syntax highlighting for c3
+    use { 'Airbus5717/c3.vim' }
 end
 
-function plugins(use)
+local function plugins(use)
     other_plugins(use)
     custom_plugins(use)
 end

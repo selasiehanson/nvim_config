@@ -42,6 +42,10 @@ local function other_plugins(use)
         'Tetralux/odin.vim'
     }
 
+    use { 'dmmulroy/tsc.nvim' }
+    use { 'rcarriga/nvim-notify' }
+
+
     use { 'ziglang/zig.vim' }
     use { "Nymphium/vim-koka" }
     use({
@@ -81,6 +85,11 @@ end
 local function plugins(use)
     other_plugins(use)
     custom_plugins(use)
+
+    -- call setup for varaious plugins
+    require('tsc').setup()
+    vim.notify = require("notify")
+
 end
 
 return plugins

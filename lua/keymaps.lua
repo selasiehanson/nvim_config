@@ -17,12 +17,56 @@ end
 --------------------------------------------
 
 -- my custom configuration
-map("n", "<C-n>", ":NERDTreeToggle<CR>", options)
-map("n", "<leader>f", ":NERDTreeFind<CR>", options)
+local navigation = {
+    nerdtree = false,
+    neotree = false,
+    nvimtree = true,
+}
+
+if navigation.nerdtree then
+    map("n", "<C-n>", ":NERDTreeToggle<CR>", options)
+    map("n", "<leader>f", ":NERDTreeFind<CR>", options)
+end
+
+if navigation.neotree then
+    map("n", "<C-n>", ":Neotree toggle<CR>", options)
+    map("n", "<leader>f", ":Neotree focus<CR>", options)
+end
+
+
+if navigation.nvimtree then
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+    map("n", "<C-n>", ":NvimTreeToggle toggle<CR>", options)
+    map("n", "<leader>f", ":NvimTreeFindFile <CR>", options)
+
+    local function nvim_tree_on_attach(bufnr)
+        local api = require "nvim-tree.api"
+
+        local function opts(desc)
+            return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+
+        -- default mappings
+        api.config.mappings.default_on_attach(bufnr)
+
+        print("called")
+        -- custom mappings
+        map('n', '<C-t>', api.tree.change_root_to_parent, opts('Up'))
+        map('n', '?', api.tree.toggle_help, opts('Help'))
+    end
+
+    -- pass to setup along with your other options
+    require("nvim-tree").setup {
+        ---
+        on_attach = nvim_tree_on_attach,
+        ---
+    }
+end
+
 map("n", "]q", ":cnext <CR>", options)
 map("n", "[q", ":cprevious <CR>", options)
 map("n", "ff", ":lua  vim.lsp.buf.format()<CR>", options);
-
 
 ----------------------------------------
 ----------------------------------------
@@ -82,10 +126,9 @@ local find_word = function(word_to_search)
 end
 
 vim.api.nvim_create_user_command('FindMeText', function()
-    local text_to_search = vim.fn.input "Search ?: "
-    find_word(text_to_search)
-
-end,
+        local text_to_search = vim.fn.input "Search ?: "
+        find_word(text_to_search)
+    end,
     { nargs = 0, desc = 'Find words with spaces' }
 )
 

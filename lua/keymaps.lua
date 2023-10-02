@@ -54,13 +54,20 @@ if navigation.nvimtree then
         -- custom mappings
         map('n', '<C-t>', api.tree.change_root_to_parent, opts('Up'))
         map('n', '?', api.tree.toggle_help, opts('Help'))
+        map("n", "I", api.tree.toggle_hidden_filter, opts "Toggle Git Ignore")
     end
 
     -- pass to setup along with your other options
     require("nvim-tree").setup {
-        ---
         on_attach = nvim_tree_on_attach,
-        ---
+        filters = {
+            git_ignored = false,
+            dotfiles = false,
+            git_clean = false,
+            no_buffer = false,
+            custom = {},
+            exclude = {},
+        }
     }
 end
 

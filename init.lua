@@ -430,6 +430,18 @@ nvim_lsp['ols'].setup {
   }
 }
 
+
+-- tun off annoying lua prompt that shows up
+require('lspconfig').lua_ls.setup {
+  settings = {
+    Lua = {
+      workspace = {
+        checkThirdParty = false,
+      },
+    },
+  },
+}
+
 -- Turn on lsp status information
 require('fidget').setup()
 

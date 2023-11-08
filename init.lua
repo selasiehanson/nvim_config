@@ -191,10 +191,7 @@ require('Comment').setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
-require('indent_blankline').setup {
-  char = '┊',
-  show_trailing_blankline_indent = false,
-}
+require('ibl').setup()
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
@@ -412,7 +409,7 @@ mason_lspconfig.setup_handlers {
   -- end
 }
 
-local ocaml_lsp_command = { 'ocamllsp', '--fallback-read-dot-merlin' }   -- fallback-read-dot-merlin  is needed for melange
+local ocaml_lsp_command = { 'ocamllsp', '--fallback-read-dot-merlin' } -- fallback-read-dot-merlin  is needed for melange
 -- local ocaml_lsp_command = { 'ocamllsp' }   -- fallback-read-dot-merlin  is needed for melange
 require 'lspconfig'.ocamllsp.setup {
   cmd = ocaml_lsp_command,
@@ -430,6 +427,43 @@ nvim_lsp['ols'].setup {
   }
 }
 
+---- CUSTOM RUBY
+--
+
+local configs = require 'lspconfig.configs'
+
+
+if not configs.abcd then
+  configs.abcd = {
+    default_config = {
+      cmd = { "/bin/sh", "~/Work/Labs/nixing/test-ruby/result/bin/my_script"  },
+      filetypes = { 'ruby' },
+      root_dir = util.root_pattern('Gemfile', '.git'),
+      init_options = {
+        formatter = 'auto',
+      },
+      single_file_support = true,
+      settings = {},
+    },
+
+  }
+
+  nvim_lsp.abcd.setup {}
+  print("Custom ruby lsp has been installed")
+end
+
+-- 3. call `setup()` to enable the FileType autocmd >
+
+
+-- nvim_lsp['rb'].setup {
+--   on_attach = on_attach,
+--   filetypes = { "ruby" },
+--   cmd = {"~/Work/Labs/nixing/test-ruby/result/bin/my_script"},
+--   -- rootPatterns = { "ols.json" },
+--   settings = {
+--   }
+-- }
+--- END CUSTOM RUBY
 
 -- tun off annoying lua prompt that shows up
 require('lspconfig').lua_ls.setup {
@@ -495,3 +529,8 @@ cmp.setup {
 ---  CUSTOM CONFIGURAITION STARTS HERE
 require('keymaps');
 require('ss.globals');
+
+
+vim.cmd([[
+  autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl
+]])

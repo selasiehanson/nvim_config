@@ -23,6 +23,11 @@ local navigation = {
     nvimtree = true,
 }
 
+if navigation.nvimtree then
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+end
+
 if navigation.nerdtree then
     map("n", "<C-n>", ":NERDTreeToggle<CR>", options)
     map("n", "<leader>f", ":NERDTreeFind<CR>", options)

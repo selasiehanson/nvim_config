@@ -42,12 +42,13 @@ local function other_plugins(use)
         'Tetralux/odin.vim'
     }
 
+    use { 'tikhomirov/vim-glsl' }
+
     use { 'dmmulroy/tsc.nvim' }
     -- use { 'rcarriga/nvim-notify' }
 
     use {
-        "folke/noice.nvim",
-        requires = {
+        "folke/noice.nvim", requires = {
             { "MunifTanjim/nui.nvim" },
             { "rcarriga/nvim-notify" },
             { "nvim-lua/plenary.nvim" }

@@ -534,3 +534,8 @@ require('ss.globals');
 vim.cmd([[
   autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl
 ]])
+
+
+vim.cmd([[
+  autocmd! BufNewFile,BufRead *.mustache,*.cft set ft=html
+]])

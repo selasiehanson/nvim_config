@@ -72,6 +72,8 @@ local function other_plugins(use)
         },
     }
 
+    use {'b4winckler/vim-objc'}
+
     use { 'ziglang/zig.vim' }
     use { "Nymphium/vim-koka" }
     use({

@@ -243,7 +243,9 @@ pcall(require('telescope').load_extension, 'fzf')
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'ocaml' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua',
+    'python',
+    'rust', 'typescript', 'help', 'ocaml' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -418,8 +420,8 @@ require 'lspconfig'.ocamllsp.setup {
 -- Mason does not support odin so we have to do it manually
 local util = require 'lspconfig.util'
 
-local nvim_lsp = require('lspconfig')
-nvim_lsp['ols'].setup {
+local lspconfig = require('lspconfig')
+lspconfig['ols'].setup {
   on_attach = on_attach,
   filetypes = { "odin" },
   rootPatterns = { "ols.json" },
@@ -427,6 +429,37 @@ nvim_lsp['ols'].setup {
   }
 }
 
+
+--- python lsp server
+lspconfig = require("lspconfig")
+lspconfig.pylsp.setup {
+  on_attach = custom_attach,
+  settings = {
+    pylsp = {
+      plugins = {
+        -- formatter options
+        -- black = { enabled = true },
+        -- autopep8 = { enabled = false },
+        -- yapf = { enabled = false },
+        -- linter options
+        -- pylint = { enabled = true, executable = "pylint" },
+        -- pyflakes = { enabled = false },
+        -- pycodestyle = { enabled = false },
+        -- type checker
+        -- pylsp_mypy = { enabled = true },
+        -- auto-completion options
+        -- jedi_completion = { fuzzy = true },
+        -- import sorting
+        pyls_isort = { enabled = true },
+        rope_autoimport = { enabled = true },
+      },
+    },
+  },
+  flags = {
+    debounce_text_changes = 200,
+  },
+  capabilities = capabilities,
+}
 ---- CUSTOM RUBY
 --
 
@@ -436,7 +469,7 @@ local configs = require 'lspconfig.configs'
 if not configs.abcd then
   configs.abcd = {
     default_config = {
-      cmd = { "/bin/sh", "~/Work/Labs/nixing/test-ruby/result/bin/my_script"  },
+      cmd = { "/bin/sh", "~/Work/Labs/nixing/test-ruby/result/bin/my_script" },
       filetypes = { 'ruby' },
       root_dir = util.root_pattern('Gemfile', '.git'),
       init_options = {
@@ -448,7 +481,7 @@ if not configs.abcd then
 
   }
 
-  nvim_lsp.abcd.setup {}
+  lspconfig.abcd.setup {}
   print("Custom ruby lsp has been installed")
 end
 

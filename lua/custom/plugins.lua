@@ -49,10 +49,10 @@ local function other_plugins(use)
 
     use {
         "folke/noice.nvim", requires = {
-            { "MunifTanjim/nui.nvim" },
-            { "rcarriga/nvim-notify" },
-            { "nvim-lua/plenary.nvim" }
-        }
+        { "MunifTanjim/nui.nvim" },
+        { "rcarriga/nvim-notify" },
+        { "nvim-lua/plenary.nvim" }
+    }
     }
     --
     -- use {
@@ -72,15 +72,35 @@ local function other_plugins(use)
         },
     }
 
-    use {'b4winckler/vim-objc'}
+    use { 'b4winckler/vim-objc' }
 
     use { 'ziglang/zig.vim' }
     use { "Nymphium/vim-koka" }
+    -------------------------------------------
+    -------------------------------------------
+    -------------------------------------------
+    -------------------------------------------
+    ------- DEBUGGING
+    -------------------------------------------
+    -------------------------------------------
+    -------------------------------------------
+    -------------------------------------------
     use({
         "mfussenegger/nvim-dap",
-        -- config = function(_, _)
-        --     require("core.utils").load_mappings("dap")
-        -- end
+        config = function(_, _)
+            -- require("core.utils").load_mappings("dap")
+        end
+    })
+    use({
+        "mfussenegger/nvim-dap-python",
+        requires = {
+            "mfussenegger/nvim-dap",
+        },
+        config = function(_, opts)
+            local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+            require("dap-python").setup(path)
+            -- require("core.utils").load_mappings("dap_python")
+        end,
     })
     use(
         {

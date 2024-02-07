@@ -24,8 +24,8 @@ local navigation = {
 }
 
 if navigation.nvimtree then
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
 end
 
 if navigation.nerdtree then
@@ -173,3 +173,51 @@ end
 
 map("n", '<leader>e', IncreasePane, options)
 map("n", '<leader>d', DecreasePane, options)
+
+----------------------------
+----------------------------
+----------------------------
+-- DEBUGGING ---------------
+----------------------------
+----------------------------
+----------------------------
+
+
+map("n", '<leader>db', ":DapToggleBreakpoint<CR>", options)
+map("n", '<leader>dpr', function()
+        require('dap-python').test_method()
+    end,
+    options)
+
+
+----------------------------
+----------------------------
+----------------------------
+------ BUILD ---------------
+----------------------------
+----------------------------
+----------------------------
+--
+--  References
+--  1. https://unix.stackexchange.com/questions/416453/run-build-command-from-vim-send-output-to-another-tmux-pane
+--  2. https://github.com/DarioHett/tvp-repl (LOOK INTO)
+--  3. https://github.com/slarwise/vim-tmux-send/tree/master (LOOK INTO)
+function nv_test()
+    vim.cmd([[
+        execute ":!tmux send -t 1 'make test' Enter"
+    ]])
+end
+function nv_build()
+    vim.cmd([[
+        execute ":!tmux send -t 1 'make build' Enter"
+    ]])
+end
+function nv_run()
+    vim.cmd([[
+        execute ":!tmux send -t 1 'make run' Enter"
+    ]])
+end
+
+map("n", "<leader>bb", ":lua nv_build()<CR><C-L>", options)
+map("n", "<leader>rr", ":lua nv_run()<CR><C-L>", options)
+map("n", "<leader>tt", ":lua nv_test()<CR><C-L>", options)

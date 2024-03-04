@@ -430,8 +430,15 @@ lspconfig['ols'].setup {
 }
 
 
---- python lsp server
 lspconfig = require("lspconfig")
+-- golangci
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+
+--- python lsp server
 lspconfig.pylsp.setup {
   on_attach = custom_attach,
   settings = {

@@ -102,25 +102,18 @@ local function other_plugins(use)
             -- require("core.utils").load_mappings("dap_python")
         end,
     })
+    use({
+        "leoluz/nvim-dap-go",
+        requires = {
+            "mfussenegger/nvim-dap",
+        },
+    })
+    use('theHamsta/nvim-dap-virtual-text')
     use(
         {
             "rcarriga/nvim-dap-ui",
             -- event = "VeryLazy",
             requires = { "mfussenegger/nvim-dap" },
-            config = function()
-                local dap = require("dap")
-                local dapui = require("dapui")
-                dapui.setup()
-                dap.listeners.after.event_initialized["dapui_config"] = function()
-                    dapui.open()
-                end
-                dap.listeners.before.event_terminated["dapui_config"] = function()
-                    dapui.close()
-                end
-                dap.listeners.before.event_exited["dapui_config"] = function()
-                    dapui.close()
-                end
-            end
         }
     )
     use { '~/Engine/source_code/jakt/editors/vim', as = 'Jakt' }

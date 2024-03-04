@@ -183,6 +183,7 @@ map("n", '<leader>d', DecreasePane, options)
 ----------------------------
 
 
+map("n", '<leader>dt', ':lua require("dapui").toggle()<CR>', options)
 map("n", '<leader>db', ":DapToggleBreakpoint<CR>", options)
 map("n", '<leader>dpr', function()
         require('dap-python').test_method()

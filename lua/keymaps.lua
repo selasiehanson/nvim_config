@@ -2,12 +2,12 @@ local options = { silent = true }
 
 -- Functional wrapper for mapping custom keybindings
 local function map(mode, lhs, rhs, opts)
-    local loptions = { noremap = true }
-    if opts then
-        options = vim.tbl_extend("force", loptions, opts)
-    end
-    -- vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-    vim.keymap.set(mode, lhs, rhs, loptions)
+	local loptions = { noremap = true }
+	if opts then
+		options = vim.tbl_extend("force", loptions, opts)
+	end
+	-- vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	vim.keymap.set(mode, lhs, rhs, loptions)
 end
 
 --------------------------------------------
@@ -18,67 +18,66 @@ end
 
 -- my custom configuration
 local navigation = {
-    nerdtree = false,
-    neotree = false,
-    nvimtree = true,
+	nerdtree = false,
+	neotree = false,
+	nvimtree = true,
 }
 
 if navigation.nvimtree then
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
+	vim.g.loaded_netrw = 1
+	vim.g.loaded_netrwPlugin = 1
 end
 
 if navigation.nerdtree then
-    map("n", "<C-n>", ":NERDTreeToggle<CR>", options)
-    map("n", "<leader>f", ":NERDTreeFind<CR>", options)
+	map("n", "<C-n>", ":NERDTreeToggle<CR>", options)
+	map("n", "<leader>f", ":NERDTreeFind<CR>", options)
 end
 
 if navigation.neotree then
-    map("n", "<C-n>", ":Neotree toggle<CR>", options)
-    map("n", "<leader>f", ":Neotree focus<CR>", options)
+	map("n", "<C-n>", ":Neotree toggle<CR>", options)
+	map("n", "<leader>f", ":Neotree focus<CR>", options)
 end
 
-
 if navigation.nvimtree then
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
-    map("n", "<C-n>", ":NvimTreeToggle toggle<CR>", options)
-    map("n", "<leader>f", ":NvimTreeFindFile <CR>", options)
+	vim.g.loaded_netrw = 1
+	vim.g.loaded_netrwPlugin = 1
+	map("n", "<C-n>", ":NvimTreeToggle toggle<CR>", options)
+	map("n", "<leader>f", ":NvimTreeFindFile <CR>", options)
 
-    local function nvim_tree_on_attach(bufnr)
-        local api = require "nvim-tree.api"
+	local function nvim_tree_on_attach(bufnr)
+		local api = require("nvim-tree.api")
 
-        local function opts(desc)
-            return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-        end
+		local function opts(desc)
+			return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+		end
 
-        -- default mappings
-        api.config.mappings.default_on_attach(bufnr)
+		-- default mappings
+		api.config.mappings.default_on_attach(bufnr)
 
-        print("called")
-        -- custom mappings
-        map('n', '<C-t>', api.tree.change_root_to_parent, opts('Up'))
-        map('n', '?', api.tree.toggle_help, opts('Help'))
-        map("n", "I", api.tree.toggle_hidden_filter, opts "Toggle Git Ignore")
-    end
+		print("called")
+		-- custom mappings
+		map("n", "<C-t>", api.tree.change_root_to_parent, opts("Up"))
+		map("n", "?", api.tree.toggle_help, opts("Help"))
+		map("n", "I", api.tree.toggle_hidden_filter, opts("Toggle Git Ignore"))
+	end
 
-    -- pass to setup along with your other options
-    require("nvim-tree").setup {
-        on_attach = nvim_tree_on_attach,
-        filters = {
-            git_ignored = false,
-            dotfiles = false,
-            git_clean = false,
-            no_buffer = false,
-            custom = {},
-            exclude = {},
-        }
-    }
+	-- pass to setup along with your other options
+	require("nvim-tree").setup({
+		on_attach = nvim_tree_on_attach,
+		filters = {
+			git_ignored = false,
+			dotfiles = false,
+			git_clean = false,
+			no_buffer = false,
+			custom = {},
+			exclude = {},
+		},
+	})
 end
 
 map("n", "]q", ":cnext <CR>", options)
 map("n", "[q", ":cprevious <CR>", options)
-map("n", "ff", ":lua  vim.lsp.buf.format()<CR>", options);
+map("n", "ff", ":lua  vim.lsp.buf.format()<CR>", options)
 
 ----------------------------------------
 ----------------------------------------
@@ -98,7 +97,7 @@ vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true,
 
 -- Telescope
 -- Show all telescope bindings
-local builtin = require('telescope.builtin')
+local builtin = require("telescope.builtin")
 
 map("n", "<leader>pp", builtin.builtin, options)
 
@@ -123,8 +122,6 @@ map("n", "<leader>cs", builtin.colorscheme, options)
 -- " set iskeyword+=.
 -- " set iskeyword+=@-@
 
-
-
 -- " This version is a bit slow due to how telescope performs the search
 -- " map("n", ??? :lua require 'telescope.builtin'.live_grep{ default_text = vim.fn.expand("<cword>") }<CR>
 -- " we use this instead
@@ -132,47 +129,39 @@ map("n", "???", ":lua require 'telescope.builtin'.grep_string{ search = vim.fn.e
 map("v", "???", ":lua require 'telescope.builtin'.grep_string{ search = vim.fn.expand('<cword>') }<CR>", options)
 map("n", "??", ":FindMeText <CR>", options)
 
-
 local find_word = function(word_to_search)
-    builtin.grep_string({ search = word_to_search })
+	builtin.grep_string({ search = word_to_search })
 end
 
-vim.api.nvim_create_user_command('FindMeText', function()
-        local text_to_search = vim.fn.input "Search ?: "
-        find_word(text_to_search)
-    end,
-    { nargs = 0, desc = 'Find words with spaces' }
-)
-
+vim.api.nvim_create_user_command("FindMeText", function()
+	local text_to_search = vim.fn.input("Search ?: ")
+	find_word(text_to_search)
+end, { nargs = 0, desc = "Find words with spaces" })
 
 -- resume last command/search sent to telescope
 map("n", "<leader>re", ":Telescope resume<CR>", options)
 
-
 map("n", "<leader>ff", ":Lspsaga code_action<CR>", options)
 map("v", "<leader>ff", ":<C-U>Lspsaga range_code_action<CR>", options)
 
-
-map("n", "<leader>af",
-    function()
-        vim.diagnostic.open_float({ scope = "line" })
-    end
-    , options)
+map("n", "<leader>af", function()
+	vim.diagnostic.open_float({ scope = "line" })
+end, options)
 
 function IncreasePane()
-    vim.cmd([[
+	vim.cmd([[
         execute ":vertical res +5"
     ]])
 end
 
 function DecreasePane()
-    vim.cmd([[
+	vim.cmd([[
         execute ":vertical res -5"
     ]])
 end
 
-map("n", '<leader>e', IncreasePane, options)
-map("n", '<leader>d', DecreasePane, options)
+map("n", "<leader>e", IncreasePane, options)
+map("n", "<leader>d", DecreasePane, options)
 
 ----------------------------
 ----------------------------
@@ -182,14 +171,11 @@ map("n", '<leader>d', DecreasePane, options)
 ----------------------------
 ----------------------------
 
-
-map("n", '<leader>dt', ':lua require("dapui").toggle()<CR>', options)
-map("n", '<leader>db', ":DapToggleBreakpoint<CR>", options)
-map("n", '<leader>dpr', function()
-        require('dap-python').test_method()
-    end,
-    options)
-
+map("n", "<leader>dt", ':lua require("dapui").toggle()<CR>', options)
+map("n", "<leader>db", ":DapToggleBreakpoint<CR>", options)
+map("n", "<leader>dpr", function()
+	require("dap-python").test_method()
+end, options)
 
 ----------------------------
 ----------------------------
@@ -204,17 +190,17 @@ map("n", '<leader>dpr', function()
 --  2. https://github.com/DarioHett/tvp-repl (LOOK INTO)
 --  3. https://github.com/slarwise/vim-tmux-send/tree/master (LOOK INTO)
 function nv_test()
-    vim.cmd([[
+	vim.cmd([[
         execute ":!tmux send -t 1 'make test' Enter"
     ]])
 end
 function nv_build()
-    vim.cmd([[
+	vim.cmd([[
         execute ":!tmux send -t 1 'make build' Enter"
     ]])
 end
 function nv_run()
-    vim.cmd([[
+	vim.cmd([[
         execute ":!tmux send -t 1 'make run' Enter"
     ]])
 end

@@ -110,7 +110,7 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -529,11 +529,6 @@ require("lazy").setup({
           map("<leader>wl", function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
           end, "[W]orkspace [L]ist Folders")
-
-          -- Create a command `:Format` local to the LSP buffer
-          -- vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-          -- vim.lsp.buf.format()
-          -- end, { desc = "Format current buffer with LSP" })
 
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)

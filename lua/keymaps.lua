@@ -58,7 +58,8 @@ if navigation.nvimtree then
 		-- custom mappings
 		map("n", "<C-t>", api.tree.change_root_to_parent, opts("Up"))
 		map("n", "?", api.tree.toggle_help, opts("Help"))
-		map("n", "I", api.tree.toggle_hidden_filter, opts("Toggle Git Ignore"))
+		-- TODO fix this since it messes with going to the beginning of the line
+		-- map("n", "I", api.tree.toggle_hidden_filter, opts("Toggle Git Ignore"))
 	end
 
 	-- pass to setup along with your other options

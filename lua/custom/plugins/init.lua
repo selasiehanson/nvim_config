@@ -19,7 +19,18 @@ local custom_plugins = function(use)
 
 	return out
 end
-local all_plugins =  {
+local all_plugins = {
+	-- Git related plugins
+	{ 'tpope/vim-fugitive' },
+	{ 'tpope/vim-rhubarb' },
+	{ 'lewis6991/gitsigns.nvim' },
+	{
+		'nvimdev/lspsaga.nvim',
+		dependencies = {
+			{'nvim-treesitter/nvim-treesitter' },
+			{'nvim-tree/nvim-web-devicons'},
+		}
+	},
 	{
 		"folke/noice.nvim",
 
@@ -30,6 +41,7 @@ local all_plugins =  {
 		},
 		--
 	},
+	{ "gleam-lang/gleam.vim" },
 
 	{ "tikhomirov/vim-glsl" },
 	{
@@ -185,4 +197,3 @@ return all_plugins
 --     require('tsc').setup()
 --     -- vim.notify = require("notify")
 -- end
-

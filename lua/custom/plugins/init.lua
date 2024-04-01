@@ -27,8 +27,8 @@ local all_plugins = {
 	{
 		'nvimdev/lspsaga.nvim',
 		dependencies = {
-			{'nvim-treesitter/nvim-treesitter' },
-			{'nvim-tree/nvim-web-devicons'},
+			{ 'nvim-treesitter/nvim-treesitter' },
+			{ 'nvim-tree/nvim-web-devicons' },
 		}
 	},
 	{
@@ -70,6 +70,7 @@ local all_plugins = {
 			"nvim-tree/nvim-web-devicons", -- optional
 		},
 	},
+	{ 'github/copilot.vim' }
 }
 
 local all_custom_plugins = custom_plugins()

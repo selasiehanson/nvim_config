@@ -39,3 +39,6 @@ lspconfig.gleam.setup {
   capabilities = capabilities,
   cmd = { "gleam", "lsp" },
 }
+
+lspconfig.metals.setup{}
+

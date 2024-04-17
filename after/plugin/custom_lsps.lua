@@ -40,5 +40,5 @@ lspconfig.gleam.setup {
   cmd = { "gleam", "lsp" },
 }
 
-lspconfig.metals.setup{}
+-- lspconfig.metals.setup{}
 

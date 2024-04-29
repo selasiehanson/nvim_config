@@ -95,6 +95,9 @@ local all_plugins = {
 				group = nvim_metals_group,
 			})
 		end
+	},
+	{
+		"christoomey/vim-tmux-navigator"
 	}
 }
 

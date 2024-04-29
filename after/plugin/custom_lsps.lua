@@ -25,6 +25,18 @@ lspconfig['ols'].setup {
 }
 
 
+-- clangd
+-- I'm using this because of an error with the default clangd config
+-- "Multiple different client offset_encodings detected" reappearing after 0.9.0 update.
+-- solutiion from https://www.reddit.com/r/neovim/comments/12qbcua/multiple_different_client_offset_encodings/
+lspconfig.clangd.setup {
+  -- on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    "clangd",
+    "--offset-encoding=utf-16",
+  },
+}
 
 -- golangci
 lspconfig.gopls.setup {
@@ -41,4 +53,3 @@ lspconfig.gleam.setup {
 }
 
 -- lspconfig.metals.setup{}
-

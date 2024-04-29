@@ -195,11 +195,13 @@ function nv_test()
         execute ":!tmux send -t 1 'make test' Enter"
     ]])
 end
+
 function nv_build()
 	vim.cmd([[
         execute ":!tmux send -t 1 'make build' Enter"
     ]])
 end
+
 function nv_run()
 	vim.cmd([[
         execute ":!tmux send -t 1 'make run' Enter"
@@ -209,3 +211,27 @@ end
 map("n", "<leader>bb", ":lua nv_build()<CR><C-L>", options)
 map("n", "<leader>rr", ":lua nv_run()<CR><C-L>", options)
 map("n", "<leader>tt", ":lua nv_test()<CR><C-L>", options)
+
+----------------------------
+----------------------------
+--
+-- yanking
+------------------------------
+------------------------------
+-- yank to clipboard
+
+map('n', '<leader>y', [["+y"]], options)
+
+
+----------------------------
+----------------------------
+----------------------------
+-- VIM TMUX NAVIGATOR
+----------------------------
+----------------------------
+----------------------------
+----------------------------
+map('n', "<C-h>", ":TmuxNavigateLeft<cr>", options)
+map('n', "<C-j>", ":TmuxNavigateDown<cr>", options)
+map('n', "<C-k>", ":TmuxNavigateUp<cr>", options)
+map('n', "<C-l>", ":TmuxNavigateRight<cr>", options)

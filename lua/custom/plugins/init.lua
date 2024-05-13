@@ -97,9 +97,9 @@ local all_plugins = {
 		end
 	},
 	{'ovikrai/mojo-syntax' },
-	{
-		"christoomey/vim-tmux-navigator"
-	}
+	-- {
+	-- 	"christoomey/vim-tmux-navigator"
+	-- }
 }
 
 local all_custom_plugins = custom_plugins()

@@ -23,6 +23,8 @@ local navigation = {
 	nvimtree = true,
 }
 
+local tmux_navigation_enabled = false
+
 if navigation.nvimtree then
 	vim.g.loaded_netrw = 1
 	vim.g.loaded_netrwPlugin = 1
@@ -231,7 +233,9 @@ map('n', '<leader>y', [["+y"]], options)
 ----------------------------
 ----------------------------
 ----------------------------
-map('n', "<C-h>", ":TmuxNavigateLeft<cr>", options)
-map('n', "<C-j>", ":TmuxNavigateDown<cr>", options)
-map('n', "<C-k>", ":TmuxNavigateUp<cr>", options)
-map('n', "<C-l>", ":TmuxNavigateRight<cr>", options)
+if tmux_navigation_enabled then
+	map('n', "<C-h>", ":TmuxNavigateLeft<cr>", options)
+	map('n', "<C-j>", ":TmuxNavigateDown<cr>", options)
+	map('n', "<C-k>", ":TmuxNavigateUp<cr>", options)
+	map('n', "<C-l>", ":TmuxNavigateRight<cr>", options)
+end

@@ -166,6 +166,9 @@ end
 map("n", "<leader>e", IncreasePane, options)
 map("n", "<leader>d", DecreasePane, options)
 
+-- map('n', '<M-e>','<c-w>5>', options)
+-- map('n', '<M-d>','<c-w>6<', options)
+
 ----------------------------
 ----------------------------
 ----------------------------

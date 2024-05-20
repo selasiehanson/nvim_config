@@ -96,7 +96,21 @@ local all_plugins = {
 			})
 		end
 	},
-	{'ovikrai/mojo-syntax' },
+	{ 'ovikrai/mojo-syntax' },
+	{
+		"ray-x/go.nvim",
+		dependencies = { -- optional packages
+			"ray-x/guihua.lua",
+			"neovim/nvim-lspconfig",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			-- require("go").setup()
+		end,
+		event = { "CmdlineEnter" },
+		ft = { "go", 'gomod' },
+		-- build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+	}
 	-- {
 	-- 	"christoomey/vim-tmux-navigator"
 	-- }
@@ -109,121 +123,3 @@ for index, value in ipairs(all_custom_plugins) do
 end
 
 return all_plugins
-
--- local function other_plugins(use)
---     use({
---         "glepnir/lspsaga.nvim",
---         branch = "main",
---         config = function()
---             local saga = require("lspsaga")
-
---             saga.setup({
---                 -- your configuration
---             })
---         end,
---     })
-
---     use {
---         'szw/vim-maximizer'
---     }
-
---     use {
---         'ntpeters/vim-better-whitespace'
---     }
-
---     use {
---         'alaviss/nim.nvim'
---     }
-
---     use {
---         'Tetralux/odin.vim'
---     }
-
---     use { 'tikhomirov/vim-glsl' }
-
---     use { 'dmmulroy/tsc.nvim' }
---     -- use { 'rcarriga/nvim-notify' }
-
---     use {
---         "folke/noice.nvim", requires = {
---         { "MunifTanjim/nui.nvim" },
---         { "rcarriga/nvim-notify" },
---         { "nvim-lua/plenary.nvim" }
---     }
---     }
---     --
---     -- use {
---     --     "nvim-neo-tree/neo-tree.nvim",
---     --     branch = "v3.x",
---     --     requires = {
---     --         "nvim-lua/plenary.nvim",
---     --         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
---     --         "MunifTanjim/nui.nvim",
---     --     }
---     -- }
-
---     use {
---         'nvim-tree/nvim-tree.lua',
---         requires = {
---             'nvim-tree/nvim-web-devicons', -- optional
---         },
---     }
-
---     use { 'b4winckler/vim-objc' }
-
---     use { 'ziglang/zig.vim' }
---     use { "Nymphium/vim-koka" }
---     -------------------------------------------
---     -------------------------------------------
---     -------------------------------------------
---     -------------------------------------------
---     ------- DEBUGGING
---     -------------------------------------------
---     -------------------------------------------
---     -------------------------------------------
---     -------------------------------------------
---     use({
---         "mfussenegger/nvim-dap",
---         config = function(_, _)
---             -- require("core.utils").load_mappings("dap")
---         end
---     })
---     use({
---         "mfussenegger/nvim-dap-python",
---         requires = {
---             "mfussenegger/nvim-dap",
---         },
---         config = function(_, opts)
---             local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
---             require("dap-python").setup(path)
---             -- require("core.utils").load_mappings("dap_python")
---         end,
---     })
---     use({
---         "leoluz/nvim-dap-go",
---         requires = {
---             "mfussenegger/nvim-dap",
---         },
---     })
---     use('theHamsta/nvim-dap-virtual-text')
---     use(
---         {
---             "rcarriga/nvim-dap-ui",
---             -- event = "VeryLazy",
---             requires = { "mfussenegger/nvim-dap" },
---         }
---     )
---     use { '~/Engine/source_code/jakt/editors/vim', as = 'Jakt' }
-
---     -- syntax highlighting for c3
---     use { 'Airbus5717/c3.vim' }
--- end
-
--- local function plugins(use)
---     other_plugins(use)
---     custom_plugins(use)
-
---     -- call setup for various plugins
---     require('tsc').setup()
---     -- vim.notify = require("notify")
--- end

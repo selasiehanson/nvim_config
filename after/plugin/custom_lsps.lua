@@ -44,6 +44,12 @@ lspconfig.gopls.setup {
   capabilities = capabilities,
 }
 
+lspconfig.templ.setup {
+  -- on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+
 
 -- gleam
 lspconfig.gleam.setup {

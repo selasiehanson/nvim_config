@@ -110,7 +110,11 @@ local all_plugins = {
 		event = { "CmdlineEnter" },
 		ft = { "go", 'gomod' },
 		-- build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+	},
+	{
+		'joerdav/templ.vim'
 	}
+
 	-- {
 	-- 	"christoomey/vim-tmux-navigator"
 	-- }

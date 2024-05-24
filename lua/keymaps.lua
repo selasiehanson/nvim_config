@@ -56,7 +56,6 @@ if navigation.nvimtree then
 		-- default mappings
 		api.config.mappings.default_on_attach(bufnr)
 
-		print("called")
 		-- custom mappings
 		map("n", "<C-t>", api.tree.change_root_to_parent, opts("Up"))
 		map("n", "?", api.tree.toggle_help, opts("Help"))
@@ -151,16 +150,39 @@ map("n", "<leader>af", function()
 	vim.diagnostic.open_float({ scope = "line" })
 end, options)
 
-function IncreasePane()
-	vim.cmd([[
-        execute ":vertical res +5"
-    ]])
+local function get_buf_name()
+	local buf_name = vim.fn.expand("%")
+	return buf_name
+end
+
+local function is_nvim_tree()
+	local buf_name = string.lower(get_buf_name())
+	return string.match(buf_name, 'nvimtree')
+end
+
+local function IncreasePane()
+	if is_nvim_tree() then
+		vim.cmd([[
+			execute "NvimTreeResize +5"
+		]])
+	else
+		vim.cmd([[
+			execute "vertical res +5"
+	       ]])
+	end
 end
 
 function DecreasePane()
-	vim.cmd([[
-        execute ":vertical res -5"
-    ]])
+
+	if is_nvim_tree() then
+		vim.cmd([[
+			execute "NvimTreeResize -5"
+		]])
+	else
+		vim.cmd([[
+			execute "vertical res -5"
+	       ]])
+	end
 end
 
 map("n", "<leader>e", IncreasePane, options)

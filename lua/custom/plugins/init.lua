@@ -9,7 +9,7 @@ local custom_plugins = function(use)
 	-- print(local_plugin_directory)
 	local out = {}
 	if local_plugin_directory ~= vim.NIL then
-		local local_plugins = { "greeter.nvim", "gitbrowser.nvim", "evaluator.nvim" }
+		local local_plugins = { "greeter.nvim", "gitbrowser.nvim", "evaluator.nvim",  "flix.nvim" }
 
 		for _, plugin in ipairs(local_plugins) do
 			local pl = { dir = local_plugin_directory .. "/" .. plugin }

@@ -59,3 +59,17 @@ lspconfig.gleam.setup {
 }
 
 -- lspconfig.metals.setup{}
+--
+--
+lspconfig.denols.setup {
+  capabilities = capabilities,
+  -- on_attach = on_attach,
+  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+}
+
+lspconfig.tsserver.setup {
+  -- on_attach = on_attach,
+  capabilities = capabilities,
+  root_dir = lspconfig.util.root_pattern("package.json"),
+  single_file_support = false
+}

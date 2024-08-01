@@ -332,7 +332,13 @@ require("lazy").setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          lsp_references = {
+            show_line = false, --  we don't need the line preview
+            -- trim_text = false,
+            -- fname_width = 20,
+          },
+        },
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown(),
@@ -829,4 +835,4 @@ require("lazy").setup({
 require("keymaps")
 require("ss.globals")
 
-vim.cmd.colorscheme("dracula")
+vim.cmd.colorscheme("nord")

@@ -24,7 +24,6 @@ local all_plugins = {
 	{ 'tpope/vim-fugitive' },
 	{'Airbus5717/c3.vim'},
 	{ 'tpope/vim-rhubarb' },
-	{ 'lewis6991/gitsigns.nvim' },
 	{
 		'nvimdev/lspsaga.nvim',
 		dependencies = {

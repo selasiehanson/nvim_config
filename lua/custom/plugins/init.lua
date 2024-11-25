@@ -2,7 +2,6 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-
 local custom_plugins = function(use)
 	local local_plugin_directory = vim.fn.getenv("MY_NVIM_PLUGINS")
 	--

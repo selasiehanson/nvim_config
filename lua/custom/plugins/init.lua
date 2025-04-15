@@ -133,6 +133,7 @@ local all_plugins = {
 			-- vim.cmd.hi("Comment gui=none")
 		end,
 	},
+	{ "kchmck/vim-coffee-script"},
 
 
 

@@ -21,7 +21,7 @@ end
 local all_plugins = {
 	-- Git related plugins
 	{ 'tpope/vim-fugitive' },
-	{'Airbus5717/c3.vim'},
+	{ 'Airbus5717/c3.vim' },
 	{ 'tpope/vim-rhubarb' },
 	{
 		'nvimdev/lspsaga.nvim',
@@ -69,6 +69,7 @@ local all_plugins = {
 			"nvim-tree/nvim-web-devicons", -- optional
 		},
 	},
+	{ "onyx-lang/onyx.vim" },
 	{ 'github/copilot.vim' },
 	{
 		"scalameta/nvim-metals",
@@ -133,7 +134,7 @@ local all_plugins = {
 			-- vim.cmd.hi("Comment gui=none")
 		end,
 	},
-	{ "kchmck/vim-coffee-script"},
+	{ "kchmck/vim-coffee-script" },
 
 
 

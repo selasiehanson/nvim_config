@@ -68,10 +68,26 @@ lspconfig.denols.setup {
 }
 
 lspconfig.ts_ls.setup {
--- lspconfig.vtsls.setup {
+  -- lspconfig.vtsls.setup {
   -- on_attach = on_attach,
   capabilities = capabilities,
   -- root_dir = util.root_pattern('tsconfig.json', 'jsconfig.json', 'package.json', '.git'),
   root_dir = lspconfig.util.root_pattern("package.json"),
   single_file_support = false
 }
+
+local lspconfig = require "lspconfig"
+local configs = require "lspconfig.configs"
+configs.onyx = {
+  default_config = {
+    cmd = { "onyx", "lsp" },
+    filetypes = { "onyx" },
+    root_dir = lspconfig.util.root_pattern("onyx-pkg.kdl"),
+    settings = {}
+  }
+}
+
+lspconfig.onyx.setup {
+  capabilities = capabilities
+}
+

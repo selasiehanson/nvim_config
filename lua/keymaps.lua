@@ -264,3 +264,10 @@ if tmux_navigation_enabled then
 	map('n', "<C-k>", ":TmuxNavigateUp<cr>", options)
 	map('n', "<C-l>", ":TmuxNavigateRight<cr>", options)
 end
+
+--------------------------------------------------
+--------------------------------------------------
+----- NOICE
+--------------------------------------------------
+--------------------------------------------------
+map("n", "<leader>cce", ":NoiceErrors<CR>", options)

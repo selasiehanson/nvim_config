@@ -78,16 +78,32 @@ lspconfig.ts_ls.setup {
 
 local lspconfig = require "lspconfig"
 local configs = require "lspconfig.configs"
-configs.onyx = {
-  default_config = {
-    cmd = { "onyx", "lsp" },
-    filetypes = { "onyx" },
-    root_dir = lspconfig.util.root_pattern("onyx-pkg.kdl"),
-    settings = {}
+if not configs.kotlin_ls then
+  configs.kotlin_ls = {
+    default_config = {
+      cmd = { 'kotlin-ls', '--stdio' },
+      single_file_support = true,
+      filetypes = { 'kotlin' },
+      root_markers = { 'build.gradle', 'build.gradle.kts', 'pom.xml' },
+    },
   }
+end
+
+lspconfig.kotlin_ls.setup {
+  capabilities = capabilities
 }
+
+if not configs.onys then
+  configs.onyx = {
+    default_config = {
+      cmd = { "onyx", "lsp" },
+      filetypes = { "onyx" },
+      root_dir = lspconfig.util.root_pattern("onyx-pkg.kdl"),
+      settings = {}
+    }
+  }
+end
 
 lspconfig.onyx.setup {
   capabilities = capabilities
 }
-

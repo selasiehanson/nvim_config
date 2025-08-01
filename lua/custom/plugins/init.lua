@@ -70,7 +70,7 @@ local all_plugins = {
 		},
 	},
 	{ "onyx-lang/onyx.vim" },
-	{ 'github/copilot.vim' },
+	-- { 'github/copilot.vim' },
 	{
 		"scalameta/nvim-metals",
 		dependencies = {

@@ -586,11 +586,20 @@ require("lazy").setup({
                 -- If lua_ls is really slow on your computer, you can try this instead:
                 -- library = { vim.env.VIMRUNTIME },
               },
+              telemetry = {
+                enable = false
+              },
               completion = {
                 callSnippet = "Replace",
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+              diagnostics = {
+                -- disable = { 'missing-fields' }
+                globals = {
+                  'vim',
+                  'require',
+                }
+              },
             },
           },
         },
@@ -610,21 +619,31 @@ require("lazy").setup({
       vim.list_extend(ensure_installed, {
         "stylua", -- Used to format lua code
       })
+      require("mason-lspconfig").setup();
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-      require("mason-lspconfig").setup({
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end,
-        },
-      })
+      -- require("mason-lspconfig").setup({
+      --   handlers = {
+      --     function(server_name)
+      --       local server = servers[server_name] or {}
+      --       -- This handles overriding only values explicitly passed
+      --       -- by the server configuration above. Useful when disabling
+      --       -- certain features of an LSP (for example, turning off formatting for tsserver)
+      --       server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+      --       require("lspconfig")[server_name].setup(server)
+      --     end,
+      --   },
+      -- })
+      -- #############################################
+      -- #############################################
+      -- USING THE NEW VIM LSP server configuration instead
+      -- #############################################
+      -- #############################################
+      for server_name, config in pairs(servers) do
+        vim.lsp.config(server_name, config)
+      end
     end,
+
   },
 
   { -- Autoformat

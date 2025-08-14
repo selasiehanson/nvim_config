@@ -854,4 +854,5 @@ require("lazy").setup({
 require("keymaps")
 require("ss.globals")
 
-vim.cmd.colorscheme("nord")
+-- vim.cmd.colorscheme("nord")
+vim.cmd.colorscheme("catppuccin")

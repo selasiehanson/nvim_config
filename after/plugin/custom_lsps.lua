@@ -1,11 +1,9 @@
-local lspconfig = require("lspconfig");
+local lspconfig = require "lspconfig"
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-
-
-local ocaml_lsp_command = { 'ocamllsp', '--fallback-read-dot-merlin' } -- fallback-read-dot-merlin  is needed for melange
+local ocaml_lsp_command = { "ocamllsp", "--fallback-read-dot-merlin" } -- fallback-read-dot-merlin  is needed for melange
 -- local ocaml_lsp_command = { 'ocamllsp' }   -- fallback-read-dot-merlin  is needed for melange
 lspconfig.ocamllsp.setup {
   capabilities = capabilities,
@@ -14,16 +12,14 @@ lspconfig.ocamllsp.setup {
 }
 
 -- Mason does not support odin so we have to do it manually
-local util = require 'lspconfig.util'
+local util = require "lspconfig.util"
 
-lspconfig['ols'].setup {
+lspconfig["ols"].setup {
   -- on_attach = on_attach,
   filetypes = { "odin" },
   rootPatterns = { "ols.json" },
-  settings = {
-  }
+  settings = {},
 }
-
 
 -- clangd
 -- I'm using this because of an error with the default clangd config
@@ -49,8 +45,6 @@ lspconfig.templ.setup {
   capabilities = capabilities,
 }
 
-
-
 -- gleam
 lspconfig.gleam.setup {
   -- on_attach = on_attach,
@@ -61,19 +55,20 @@ lspconfig.gleam.setup {
 -- lspconfig.metals.setup{}
 --
 --
-lspconfig.denols.setup {
-  capabilities = capabilities,
-  -- on_attach = on_attach,
-  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-}
+-- lspconfig.denols.setup {
+--   capabilities = capabilities,
+--   -- on_attach = on_attach,
+--   root_dir = lspconfig.util.root_pattern({"deno.json", "deno.jsonc"}),
+--
+-- }
 
 lspconfig.ts_ls.setup {
   -- lspconfig.vtsls.setup {
   -- on_attach = on_attach,
   capabilities = capabilities,
   -- root_dir = util.root_pattern('tsconfig.json', 'jsconfig.json', 'package.json', '.git'),
-  root_dir = lspconfig.util.root_pattern("package.json"),
-  single_file_support = false
+  root_dir = lspconfig.util.root_pattern { "package.json", "tsconfig.json" },
+  single_file_support = false,
 }
 
 local lspconfig = require "lspconfig"
@@ -81,16 +76,16 @@ local configs = require "lspconfig.configs"
 if not configs.kotlin_ls then
   configs.kotlin_ls = {
     default_config = {
-      cmd = { 'kotlin-ls', '--stdio' },
+      cmd = { "kotlin-ls", "--stdio" },
       single_file_support = true,
-      filetypes = { 'kotlin' },
-      root_markers = { 'build.gradle', 'build.gradle.kts', 'pom.xml' },
+      filetypes = { "kotlin" },
+      root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
     },
   }
 end
 
 lspconfig.kotlin_ls.setup {
-  capabilities = capabilities
+  capabilities = capabilities,
 }
 
 if not configs.onys then
@@ -98,12 +93,20 @@ if not configs.onys then
     default_config = {
       cmd = { "onyx", "lsp" },
       filetypes = { "onyx" },
-      root_dir = lspconfig.util.root_pattern("onyx-pkg.kdl"),
-      settings = {}
-    }
+      root_dir = lspconfig.util.root_pattern "onyx-pkg.kdl",
+      settings = {},
+    },
   }
 end
 
 lspconfig.onyx.setup {
-  capabilities = capabilities
+  capabilities = capabilities,
 }
+
+lspconfig.serve_d.setup {
+  init_options = {
+    -- Disable DCD
+    useDCD = false,
+  },
+}
+-- vim.lsp.enable "serve_d"

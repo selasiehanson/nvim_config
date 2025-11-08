@@ -856,3 +856,27 @@ require("ss.globals")
 
 -- vim.cmd.colorscheme("nord")
 vim.cmd.colorscheme("catppuccin")
+
+
+vim.filetype.add({
+  extension = {
+    jte = "jte",
+  },
+  -- pattern = {
+    -- ["%.jte%.[%w_.-]+"] = "jte",
+  -- },
+})
+-- if not vim.lsp.config['jte'] then
+vim.lsp.config('jte', {
+  cmd = { "node", "./src/lsp.ts" },
+  filetypes = { "jte" },
+  -- root_dir = function()
+  --   return vim.loop.cwd()
+  -- end,
+  root_markers = { "jte.txt", "package.json" }, -- where to set the root directory
+  cmd_cwd = vim.fs.root(0, { 'jte.txt' }),
+  root_dir = vim.fs.root(0, { 'jte.txt' }),
+})
+vim.lsp.enable('jte')
+
+-- end

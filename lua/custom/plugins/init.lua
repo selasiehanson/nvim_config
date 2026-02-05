@@ -40,6 +40,7 @@ local all_plugins = {
 		},
 		--
 	},
+	{ "Olical/conjure" },
 	{ "gleam-lang/gleam.vim" },
 
 	{ "tikhomirov/vim-glsl" },

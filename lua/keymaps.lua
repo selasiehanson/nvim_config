@@ -150,6 +150,10 @@ map("n", "<leader>af", function()
 	vim.diagnostic.open_float({ scope = "line" })
 end, options)
 
+-- TODO: test this
+map('n', '<F2>', function () require("conjure.eval")["replace-form"]() end, { noremap = true, silent = true })
+
+
 local function get_buf_name()
 	local buf_name = vim.fn.expand("%")
 	return buf_name

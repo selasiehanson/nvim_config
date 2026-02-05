@@ -103,10 +103,46 @@ lspconfig.onyx.setup {
   capabilities = capabilities,
 }
 
-lspconfig.serve_d.setup {
-  init_options = {
-    -- Disable DCD
-    useDCD = false,
-  },
-}
+vim.lsp.enable('clojure_lsp')
+
+-- lspconfig.serve_d.setup {}
+
+-- lspconfig.serve_d.setup {
+--   init_options = {
+--     settings = {
+--       d = {
+--         dcdClientPath = vim.fn.exepath "dcd-client",
+--         dcdServerPath = vim.fn.exepath "dcd-server",
+--       },
+--     },
+--   },
+--   settings = {
+--     dcdServerPath = vim.fn.exepath "dcd-server",
+--     dcdClientPath = vim.fn.exepath "dcd-client",
+--     -- Disable DCD
+--     -- useDCD = false,
+--   },
+-- }
+-- vim.lsp.enable "serve_d"
+--
+-- vim.lsp.config("serve_d", {
+--   cmd = { "serve-d" },
+--   -- filetypes = { "jte" },
+--   -- Optional: explicitly configure DCD paths
+--   init_options = {
+--     configuration = {
+--       d = {
+--         dcdClientPath = vim.fn.exepath "dcd-client",
+--         dcdServerPath = vim.fn.exepath "dcd-server",
+--       },
+--     },
+--   },
+--   -- root_dir = function()
+--   --   return vim.loop.cwd()
+--   -- end,
+--   -- root_markers = { "jte.txt", "package.json" }, -- where to set the root directory
+--   -- cmd_cwd = vim.fs.root(0, { "jte.txt" }),
+--   -- root_dir = vim.fs.root(0, { "jte.txt" }),
+--   root_dir = vim.fs.dirname(vim.fs.find({ "dub.json", "dub.sdl", ".git" }, { upward = true })[1]),
+-- })
 -- vim.lsp.enable "serve_d"

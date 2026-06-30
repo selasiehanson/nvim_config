@@ -1,109 +1,75 @@
-local lspconfig = require "lspconfig"
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+-- broadcast cmp capabilities to every server
+vim.lsp.config("*", { capabilities = capabilities })
 
-local ocaml_lsp_command = { "ocamllsp", "--fallback-read-dot-merlin" } -- fallback-read-dot-merlin  is needed for melange
--- local ocaml_lsp_command = { 'ocamllsp' }   -- fallback-read-dot-merlin  is needed for melange
-lspconfig.ocamllsp.setup {
-  capabilities = capabilities,
-  cmd = ocaml_lsp_command,
-  -- on_attach = on_attach,
-}
-
--- Mason does not support odin so we have to do it manually
-local util = require "lspconfig.util"
-
-lspconfig["ols"].setup {
-  -- on_attach = on_attach,
-  filetypes = { "odin" },
-  rootPatterns = { "ols.json" },
-  settings = {},
-}
+-- servers with shipped defaults: override only what's needed
+vim.lsp.config("ocamllsp", {
+  cmd = { "ocamllsp", "--fallback-read-dot-merlin" }, -- fallback-read-dot-merlin is needed for melange
+})
 
 -- clangd
--- I'm using this because of an error with the default clangd config
+-- I'm using --offset-encoding=utf-16 because of an error with the default clangd config
 -- "Multiple different client offset_encodings detected" reappearing after 0.9.0 update.
--- solutiion from https://www.reddit.com/r/neovim/comments/12qbcua/multiple_different_client_offset_encodings/
-lspconfig.clangd.setup {
-  -- on_attach = on_attach,
-  capabilities = capabilities,
+-- solution from https://www.reddit.com/r/neovim/comments/12qbcua/multiple_different_client_offset_encodings/
+vim.lsp.config("clangd", {
   cmd = {
     "clangd",
     "--offset-encoding=utf-16",
   },
-}
+})
 
--- golangci
-lspconfig.gopls.setup {
-  -- on_attach = on_attach,
-  capabilities = capabilities,
-}
-
-lspconfig.templ.setup {
-  -- on_attach = on_attach,
-  capabilities = capabilities,
-}
+vim.lsp.config("ts_ls", {
+  -- root_markers replaces the deprecated single_file_support: ts_ls only attaches
+  -- inside a project that has one of these markers.
+  root_markers = { "package.json", "tsconfig.json" },
+})
 
 -- gleam
-lspconfig.gleam.setup {
-  -- on_attach = on_attach,
-  capabilities = capabilities,
+vim.lsp.config("gleam", {
   cmd = { "gleam", "lsp" },
-}
+})
+
+-- ols: native default exists; Mason does not support odin so it's installed manually
+vim.lsp.config("ols", {
+  filetypes = { "odin" },
+})
+
+-- gopls, templ: shipped defaults are fine (capabilities come from the "*" config)
+
+-- servers WITHOUT shipped defaults: full definition
+vim.lsp.config("kotlin_ls", {
+  cmd = { "kotlin-ls", "--stdio" },
+  filetypes = { "kotlin" },
+  root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
+})
+
+vim.lsp.config("onyx", {
+  cmd = { "onyx", "lsp" },
+  filetypes = { "onyx" },
+  root_markers = { "onyx-pkg.kdl" },
+})
+
+vim.lsp.enable({
+  "ocamllsp",
+  "clangd",
+  "gopls",
+  "templ",
+  "gleam",
+  "ts_ls",
+  "ols",
+  "kotlin_ls",
+  "onyx",
+  "clojure_lsp",
+})
 
 -- lspconfig.metals.setup{}
---
 --
 -- lspconfig.denols.setup {
 --   capabilities = capabilities,
 --   -- on_attach = on_attach,
 --   root_dir = lspconfig.util.root_pattern({"deno.json", "deno.jsonc"}),
---
 -- }
-
-lspconfig.ts_ls.setup {
-  -- lspconfig.vtsls.setup {
-  -- on_attach = on_attach,
-  capabilities = capabilities,
-  -- root_dir = util.root_pattern('tsconfig.json', 'jsconfig.json', 'package.json', '.git'),
-  root_dir = lspconfig.util.root_pattern { "package.json", "tsconfig.json" },
-  single_file_support = false,
-}
-
-local lspconfig = require "lspconfig"
-local configs = require "lspconfig.configs"
-if not configs.kotlin_ls then
-  configs.kotlin_ls = {
-    default_config = {
-      cmd = { "kotlin-ls", "--stdio" },
-      single_file_support = true,
-      filetypes = { "kotlin" },
-      root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
-    },
-  }
-end
-
-lspconfig.kotlin_ls.setup {
-  capabilities = capabilities,
-}
-
-if not configs.onys then
-  configs.onyx = {
-    default_config = {
-      cmd = { "onyx", "lsp" },
-      filetypes = { "onyx" },
-      root_dir = lspconfig.util.root_pattern "onyx-pkg.kdl",
-      settings = {},
-    },
-  }
-end
-
-lspconfig.onyx.setup {
-  capabilities = capabilities,
-}
-
-vim.lsp.enable('clojure_lsp')
 
 -- lspconfig.serve_d.setup {}
 
